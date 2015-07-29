@@ -15,7 +15,7 @@ End Interface
 
 Public Interface Positionable
 
-Property Pos As Point 
-Property Offset As Point 
+Property Pos As Drawing.Point 
+Property Offset As Drawing.Point 
 
 End Interface

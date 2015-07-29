@@ -1,11 +1,22 @@
 ﻿'Wrapper Klasse für Point
 Public Class   Point
+Implements Positionable
+
+public Dim mover As InteractiveLocation
+
+#Region "Wrapper Methods"
 
   Public pt As Drawing.Point 'it's a structure!
 
+  Public Sub new ()
+    mover = new InteractiveLocation (Me) 
+  End Sub
+
   Public sub new (x As Integer , y As Integer )
+    Me.New 
     pt.x = x
     pt.y = y 
+    mover.Pos = pt 
   End Sub
 
   Public sub new (point As Drawing.Point )
@@ -51,6 +62,19 @@ Public Class   Point
       Return Value - Add.pt 
     End Operator
 
+#End Region '"Wrapper Methods"
+
+Public Property Offset As New  Drawing.Point Implements Positionable.Offset
+
+Public Property Pos As Drawing.Point Implements Positionable.Pos
+Get
+  return me.pt  
+End Get
+Set(value As Drawing.Point)
+ pt= value 
+  mover.Pos = pt 
+End Set
+End Property
 End class
 
  

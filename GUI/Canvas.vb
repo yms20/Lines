@@ -54,7 +54,7 @@ Select Me.Mode
   Case Modes.AddState 
     Dim s As New State 
     Lines.Add (s) 
-    s.pos = New Point (e.X,e.Y ) 
+    s.pos = e.Location 
     Me.Controls.Add (s.getInteractiveLocation )
     Me.Controls.Add (s.getInteractiveConenct )
 End Select

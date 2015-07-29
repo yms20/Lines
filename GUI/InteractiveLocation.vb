@@ -1,47 +1,60 @@
-﻿Public Class InteractiveLocation
+﻿Imports System.Drawing.Drawing2D
+
+Public Class InteractiveLocation
 Implements Positionable
 
-  Dim lastMousePos As Point = Point.Empty 
-  Dim dragging As Boolean = False  
+  Shared inst_ctr As Integer = 0
 
-  Dim child As Positionable 
+  Dim lastMousePos As Drawing.Point = Drawing.Point.Empty
+  Dim dragging As Boolean = False
 
-Sub new 
-InitializeComponent()
+  Dim child As Positionable
+
+Sub New()
+  InitializeComponent()
+  inst_ctr += 1 
+  Console.WriteLine ("InteractiveLocation Instances: " & inst_ctr ) 
 End Sub
 
-Sub new (child As Positionable)
-  InitializeComponent 
-  Me.child = child 
+Sub New(child As Positionable)
+  Me.New 
+  Me.child = child
 End Sub
 
-Private Sub PointInteractions_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
-  dragging = True 
-  lastMousePos.pt = e.Location 
+Private Sub InteractiveLocation_Load(sender As Object, e As EventArgs) Handles Me.Load
+  'make the order round
+  'Dim path As New GraphicsPath
+  'path.AddEllipse(New Rectangle(0, 0, Width, Height))
+  'Me.Region = New Region(path)
 End Sub
 
-Private Sub PointInteractions_MouseMove( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseMove
-  If dragging 
-    Dim delta As New Point ( e.X - lastMousePos.X, e.Y - lastMousePos.Y ) 
-    
+Private Sub PointInteractions_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
+  dragging = True
+  lastMousePos = e.Location
+End Sub
+
+Private Sub PointInteractions_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+  If dragging Then
+    Dim delta As New Drawing.Point(e.X - lastMousePos.X, e.Y - lastMousePos.Y)
+
     'Location = New Point ( Location.X + deltaX , Location.Y + deltaY )  
-    If Not isnothing (child ) then child.Pos  =  New Point (Pos + delta) 
+    If Not IsNothing(child) Then child.Pos = Pos + delta
   End If
 
 End Sub
 
-Private Sub PointInteractions_MouseUp( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseUp
-  dragging = False  
+Private Sub PointInteractions_MouseUp(sender As Object, e As MouseEventArgs) Handles MyBase.MouseUp
+  dragging = False
 End Sub
 
-Public Property Offset As Point = new Point ( 2, 2)   Implements Positionable.offset 
+Public Property Offset As Drawing.Point = New Drawing.Point(-Width /2 , -Height /2 ) Implements Positionable.Offset
 
-Public Property Pos As Point  Implements Positionable.pos
+Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get
-  Return New Point (Location - Offset ) 
+  Return Location - Offset
 End Get
-Set(value As Point)
-  Location = value + Offset 
+Set(value As Drawing.Point)
+  Location = value + Offset
 End Set
 End Property
 

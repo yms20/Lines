@@ -8,21 +8,20 @@ Implements Drawable , Positionable
   public Property Points As new Generic.List (Of Point ) 
 
  
-  Public Property Offset As Point Implements Positionable.Offset
+  Public Property Offset As Drawing.Point Implements Positionable.Offset
 
-  Public Property Pos As Point Implements Positionable.Pos 
+  Public Property Pos As Drawing.Point Implements Positionable.Pos 
     Get
       If Points.Count > 1
-        Return Points(0) 
+        Return Points(0).pt 
       End If  
-      Return Point.Empty 
+      Return Drawing.Point.Empty 
     End Get
-    Set(value  As Point )
-      Points(0)  = value 
+    Set(value  As Drawing.Point )
+      Points(0).pt   = value 
     End Set
   End Property
 
-  Public m_PointControls As List(Of PointInteractions ) 
 
   Sub new 
     ctr += 1 
@@ -93,25 +92,15 @@ Implements Drawable , Positionable
     Return New Point (tX,tY ) 
   End Function
 
-  Public ReadOnly Property PointControls As List (of PointInteractions ) 
+  Public ReadOnly Property PointControls As List (of InteractiveLocation  ) 
     Get
-      If IsNothing ( m_PointControls ) 
-        m_PointControls= New List(Of PointInteractions ) 
-        For i As Integer = Points.Count to 1 Step -1 
-          m_PointControls.Add (new PointInteractions (Me , i-1 ) )
-        Next
-
-      End If
-      return m_PointControls
+      PointControls= Points.Select (Of InteractiveLocation ) (Function (x As Point ) x.mover ).ToList 
     End Get
       
   End Property
 
   Public Sub showPoints 
-    For Each pc As PointInteractions In  m_PointControls
-    pc.Visible = True 
-    Next
-
+    Points.ForEach ( Function (x As Point ) x.mover.Visible = True   ) 
   End Sub
 
 

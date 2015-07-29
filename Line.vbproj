@@ -114,12 +114,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Line.vb" />
-    <Compile Include="GUI\PointInteractions.Designer.vb">
-      <DependentUpon>PointInteractions.vb</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\PointInteractions.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="GUI\Starter.Designer.vb">
       <DependentUpon>Starter.vb</DependentUpon>
     </Compile>
@@ -148,9 +142,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\PointInteractions.resx">
-      <DependentUpon>PointInteractions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Starter.resx">
       <DependentUpon>Starter.vb</DependentUpon>

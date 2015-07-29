@@ -4,7 +4,7 @@ Implements Positionable
 
 
 
-  Dim lastMousePos As Point = Point.Empty 
+  Dim lastMousePos As Drawing.Point = Drawing.Point.Empty 
   Dim dragging As Boolean = False
 
   Private Sub InterActiveConnect_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
@@ -14,12 +14,12 @@ Implements Positionable
 
   Private Sub InterActiveConnect_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
     dragging = True 
-    lastMousePos.pt = e.Location 
+    lastMousePos = e.Location 
   End Sub
 
 
   Private Sub InterActiveConnect_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-    If dragging 
+    If dragging and Math.Abs (e.Location.X - lastMousePos.X ) > 10
       DoDragDrop (Location ,DragDropEffects.Move  )
       dragging = False 
     End If
@@ -33,14 +33,20 @@ Private Sub InterActiveConnect_DragEnter( sender As Object,  e As DragEventArgs)
   e.Effect =DragDropEffects.Move 
 End Sub
 
-Public Property Offset As Point  = New Point (20, 20 )  Implements Positionable.Offset 
 
-Public Property Pos As Point Implements Positionable.Pos
+
+Public Property Offset As Drawing.Point  = New Drawing.Point (20, 20 )  Implements Positionable.Offset 
+
+Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get
-  Return New Point (Location - Offset )
+  Return  Location - Offset 
 End Get
-Set(value As Point)
+Set(value As Drawing.Point)
  Location = value + Offset 
 End Set
 End Property
+
+Private Sub InterActiveConnect_MouseLeave(sender As Object, e As EventArgs) Handles Me.MouseLeave
+
+End Sub
 End Class

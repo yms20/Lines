@@ -5,12 +5,12 @@
   Public Property line As Line
   Public Property duration As Double 'in ms
 
-  Public Property Offset As Point Implements Positionable.Offset
-  Public Property Pos As Point Implements Animateable.Pos 
+  Public Property Offset As Drawing.Point Implements Positionable.Offset
+  Public Property Pos As Drawing.Point Implements Animateable.Pos 
   Get
-    Return line.getPoint (t)
+    Return line.getPoint (t).pt 
   End Get
-  Set(value  As Point )
+  Set(value  As Drawing.Point )
     
   End Set
   End Property
