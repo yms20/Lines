@@ -1,15 +1,28 @@
-﻿Public Class InterActiveConnect
+﻿Public Class InteractiveConnect
 Implements Positionable
 
 
-
+  Dim state As State
 
   Dim lastMousePos As Drawing.Point = Drawing.Point.Empty 
   Dim dragging As Boolean = False
 
+  Public Sub new (state As State)
+    InitializeComponent 
+    Me.state = state 
+  End Sub
+
   Private Sub InterActiveConnect_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
-    Dim s As InterActiveConnect = sender 
-    MsgBox (s.Location.ToString   ) 
+    Dim s As InteractiveConnect = e.Data.GetData("InteractiveConnect") 
+    
+    Dim line As New Line 
+    line.Points.Add (New Point (s.state.Pos))    
+    line.Points.Add (New Point (state.Pos))
+    
+    s.state.outs.Add(line ) 
+    state.ins.Add (line) 
+
+    'MsgBox (s.Location.ToString   ) 
   End Sub  
 
   Private Sub InterActiveConnect_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
@@ -19,20 +32,22 @@ Implements Positionable
 
 
   Private Sub InterActiveConnect_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+    'Drag at least 10 Pixels away befor start drag and drop
     If dragging and Math.Abs (e.Location.X - lastMousePos.X ) > 10
-      DoDragDrop (Location ,DragDropEffects.Move  )
+      DoDragDrop (Me ,DragDropEffects.Move  )
       dragging = False 
     End If
   End Sub
 
-Private Sub InterActiveConnect_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
-  dragging = False 
-End Sub
+  Private Sub InterActiveConnect_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+    dragging = False 
+  End Sub
 
-Private Sub InterActiveConnect_DragEnter( sender As Object,  e As DragEventArgs) Handles MyBase.DragEnter
-  e.Effect =DragDropEffects.Move 
-End Sub
+  Private Sub InterActiveConnect_DragEnter( sender As Object,  e As DragEventArgs) Handles MyBase.DragEnter
+    e.Effect =DragDropEffects.Move 
+  End Sub
 
+#Region "Positionable Implementaion"
 
 
 Public Property Offset As Drawing.Point  = New Drawing.Point (20, 20 )  Implements Positionable.Offset 
@@ -46,7 +61,6 @@ Set(value As Drawing.Point)
 End Set
 End Property
 
-Private Sub InterActiveConnect_MouseLeave(sender As Object, e As EventArgs) Handles Me.MouseLeave
+#End Region '"Positionable Implementaion"
 
-End Sub
 End Class

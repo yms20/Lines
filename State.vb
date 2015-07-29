@@ -2,9 +2,12 @@
 Implements Drawable, Positionable 
 
 
-  Dim m_pos As New  Drawing.Point (10,10) 
+  
+
+#region  "Positionable Implementations"
+Dim m_pos As New  Drawing.Point (10,10) 
   Public Property Offset As Drawing.Point Implements Positionable.Offset
-  Public Property pos As Drawing.Point Implements Positionable.pos 
+  Public Property Pos As Drawing.Point Implements Positionable.Pos 
   Get
     Return m_pos 
   End Get
@@ -12,12 +15,27 @@ Implements Drawable, Positionable
     m_pos = value 
     locator.Pos =  value 
     connector.Pos = value
+
+  For Each l As Line In outs 
+    l.Points(0).Pos = value 
+  Next
+
+  For Each l As Line In ins
+    l.Points(l.Points.Count - 1).Pos = value 
+  Next
+
+
   End Set
   End Property
+
+#End Region '"Positionable Implementations"
   Public Property Name = "1"
 
   Dim locator As new InteractiveLocation (Me ) 
-  Dim connector As New InterActiveConnect ()
+  Dim connector As New InteractiveConnect (Me)
+
+  Public outs As new List(Of Line)
+  Public ins As New List(Of Line) 
 
 
   Public Sub new
@@ -37,12 +55,18 @@ Implements Drawable, Positionable
     Return locator 
   End Function
 
-  Public function getInteractiveConenct() As InterActiveConnect 
+  Public function getInteractiveConenct() As InteractiveConnect 
     Return connector 
   End Function
 
   Public Sub draw(g As Graphics) Implements Drawable.draw
     g.DrawEllipse (Pens.Black  , New Rectangle (Pos,New Size (20,20)))
+
+    For Each l As Line In outs 
+      l.draw (g) 
+    Next
+
+   ' outs.ForEach (Function (l As Line ) l.draw (g) )
   End Sub
 
 

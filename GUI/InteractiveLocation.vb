@@ -47,7 +47,7 @@ Private Sub PointInteractions_MouseUp(sender As Object, e As MouseEventArgs) Han
   dragging = False
 End Sub
 
-Public Property Offset As Drawing.Point = New Drawing.Point(-Width /2 , -Height /2 ) Implements Positionable.Offset
+Public Property Offset As Drawing.Point = New Drawing.Point(-5 ,-5 ) Implements Positionable.Offset
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get

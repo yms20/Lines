@@ -35,8 +35,8 @@ Implements Drawable , Positionable
   Public Sub draw (g As Graphics )  Implements Drawable.draw 
       If Points.Count > 1
         g.DrawString (Name, SystemFonts.MessageBoxFont  ,Brushes.AliceBlue,new PointF( Points(0).X ,Points(0).Y )  ) 
-
-        g.DrawLines (Pens.AliceBlue ,  Points.Select (Of Drawing.Point) (Function (p As Point ) p.pt ).ToArray    ) 
+        Dim pts As Drawing.Point () =  Points.Select (Of Drawing.Point) (Function (p As Point ) p.pt ).ToArray
+        g.DrawLines (Pens.AliceBlue , pts) 
       End If
   End Sub
 
@@ -95,8 +95,7 @@ Implements Drawable , Positionable
   Public ReadOnly Property PointControls As List (of InteractiveLocation  ) 
     Get
       PointControls= Points.Select (Of InteractiveLocation ) (Function (x As Point ) x.mover ).ToList 
-    End Get
-      
+    End Get    
   End Property
 
   Public Sub showPoints 
