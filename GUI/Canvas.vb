@@ -35,7 +35,7 @@ End Sub
 Sub addLine(e As MouseEventArgs)
   Select (e.Button ) 
     Case Windows.Forms.MouseButtons.Left :
-      current.asdd (e.Location ) 
+      current.asdd ( New Point ( e.Location ) ) 
     Case Windows.Forms.MouseButtons.Right :
       Lines.Add (current )
       RaiseEvent createdStartable (Me,current ) 
@@ -68,7 +68,7 @@ Select Me.Mode
 Case Modes.AddLine
   If current.Points.Count > 0 
     current.draw (e.Graphics ) 
-    Dim lp As Drawing.Point = current.Points(current.Points.Count -1 )
+    Dim lp As Drawing.Point = current.Points(current.Points.Count -1 ).pt
     e.Graphics.DrawLine ( Pens.AliceBlue, lp, lastMousePos)
     e.Graphics.DrawString (String.Format ("L:{0:0.00}",current.length), SystemFonts.MessageBoxFont  ,Brushes.AliceBlue,new PointF( lp.X ,lp.Y )  ) 
     Dim deltaLength As Double = current.length + Math.Sqrt ( Math.Pow (lp.X - lastMousePos.X,2) + Math.Pow (lp.Y - lastMousePos.Y,2) )

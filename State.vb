@@ -3,6 +3,7 @@ Implements Drawable, Positionable
 
 
   Dim m_pos As New  Point (10,10) 
+  Public Property Offset As Point Implements Positionable.Offset
   Public Property pos As Point Implements Positionable.pos 
   Get
     Return m_pos 
@@ -15,7 +16,8 @@ Implements Drawable, Positionable
   End Property
   Public Property Name = "1"
   
-  Dim locator As new InteractiveLocation (AddressOf setLocation ) 
+  'Dim locator As new InteractiveLocation (AddressOf setLocation ) 
+  Dim locator As new InteractiveLocation (Me ) 
   Dim connector As New InterActiveConnect ()
   Public Sub new
     locator.BackColor = Color.AliceBlue 
@@ -37,20 +39,11 @@ Implements Drawable, Positionable
   Public function getInteractiveConenct() As InterActiveConnect 
     Return connector 
   End Function
-  
-
-  Function setLocation(loc As Point )  As InteractiveLocation.setLocation 
-    m_pos = loc 
-    connector.Pos = loc 
-    locator.Pos = loc
-Return Nothing 
-  End Function
 
   Public Sub draw(g As Graphics) Implements Drawable.draw
-    g.DrawEllipse (Pens.Black  , New Rectangle (pos,New Size (20,20)))
+    g.DrawEllipse (Pens.Black  , New Rectangle (Pos.pt,New Size (20,20)))
   End Sub
 
-Public Property Offset As Point Implements Positionable.Offset
 
-Public Property Pos1 As Point 
+
 End Class

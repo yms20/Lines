@@ -5,7 +5,7 @@ Implements Drawable , Positionable
 
   Shared  dim ctr As Integer = 0 
   public Property Name As String = "Line "
-  public Property Points As new Generic.List (Of Drawing.Point ) 
+  public Property Points As new Generic.List (Of Point ) 
 
  
   Public Property Offset As Point Implements Positionable.Offset
@@ -29,14 +29,15 @@ Implements Drawable , Positionable
     Name = String.Format("{0}{1:00}",Name,ctr)
   End Sub
 
-  public Sub asdd(p As Drawing.Point )
+  public Sub asdd(p As Point )
     Points.Add (p) 
   End Sub 
  
   Public Sub draw (g As Graphics )  Implements Drawable.draw 
       If Points.Count > 1
         g.DrawString (Name, SystemFonts.MessageBoxFont  ,Brushes.AliceBlue,new PointF( Points(0).X ,Points(0).Y )  ) 
-        g.DrawLines (Pens.AliceBlue , Points.ToArray ) 
+
+        g.DrawLines (Pens.AliceBlue ,  Points.Select (Of Drawing.Point) (Function (p As Point ) p.pt ).ToArray    ) 
       End If
   End Sub
 

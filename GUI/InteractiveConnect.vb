@@ -14,7 +14,7 @@ Implements Positionable
 
   Private Sub InterActiveConnect_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
     dragging = True 
-    lastMousePos = e.Location 
+    lastMousePos.pt = e.Location 
   End Sub
 
 
@@ -37,7 +37,7 @@ Public Property Offset As Point  = New Point (20, 20 )  Implements Positionable.
 
 Public Property Pos As Point Implements Positionable.Pos
 Get
-  Return Location - Offset 
+  Return New Point (Location - Offset )
 End Get
 Set(value As Point)
  Location = value + Offset 

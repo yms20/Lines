@@ -126,6 +126,7 @@
     <Compile Include="GUI\Starter.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Point.vb" />
     <Compile Include="Runner.vb" />
     <Compile Include="State.vb" />
   </ItemGroup>

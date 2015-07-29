@@ -24,7 +24,7 @@ InitializeComponent()
 
     Me.Width = 10 
     Me.Height = 10 
-    Me.Location = New Point (p.X - sizee/2,p.Y - sizee/2 ) 
+    Me.Location = New Drawing.Point (p.X - sizee/2,p.Y - sizee/2 ) 
     Me.BackColor = Color.Green 
   End Sub
 
@@ -37,14 +37,14 @@ End Sub
 
 Private Sub PointInteractions_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
   dragging = True 
-  lastMousePos = e.Location 
+  lastMousePos.pt = e.Location 
 End Sub
 
 Private Sub PointInteractions_MouseMove( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseMove
   If dragging and index >= 0 
     Dim deltaX As Integer = ( e.X - lastMousePos.X ) 
     Dim deltaY As Integer = ( e.Y - lastMousePos.Y ) 
-    Location = New Point ( Location.X + deltaX , Location.Y + deltaY )  
+    Location = New Drawing.Point ( Location.X + deltaX , Location.Y + deltaY )  
     Dim p As Point = line.Points(index)
     p.X = p.X + deltaX 
     p.Y = p.Y + deltaY
