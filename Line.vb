@@ -27,10 +27,6 @@ Implements Drawable , Positionable
     ctr += 1 
     Name = String.Format("{0}{1:00}",Name,ctr)
   End Sub
-
-  public Sub asdd(p As Point )
-    Points.Add (p) 
-  End Sub 
  
   Public Sub draw (g As Graphics )  Implements Drawable.draw 
       If Points.Count > 1
@@ -39,7 +35,6 @@ Implements Drawable , Positionable
         g.DrawLines (Pens.AliceBlue , pts) 
       End If
   End Sub
-
 
   Public ReadOnly Property length As Double 
     Get
@@ -51,7 +46,7 @@ Implements Drawable , Positionable
     End Get
   End Property
 
-  Public Function getPoint(t As Double ) As Point
+  Public Function getPoint(t As Double ) As Drawing.Point
 
     Dim total as double = Me.length
     Dim tar As Double = length * t 
@@ -59,7 +54,7 @@ Implements Drawable , Positionable
   
 
     if Points.Count = 0 then Return nothing 
-    If Points.Count = 1 then Return Points (0)
+    If Points.Count = 1 then Return Points (0).pt 
 
     Dim currentPoint As integer = 0 
 
@@ -81,7 +76,7 @@ Implements Drawable , Positionable
     Dim distToCurrentPlusOne As Double = Math.Sqrt ( Math.Pow (pN.X - pN1.X,2) + Math.Pow (pN.Y - pN1.Y,2) ) 
 
     If distToCurrentPlusOne = 0 
-      Return pN 
+      Return pN.pt 
     End If
     'prozent in t (0..1)
     Dim quantT = restDistance / distToCurrentPlusOne 
@@ -89,7 +84,7 @@ Implements Drawable , Positionable
     Dim tX = pN.X * (1-quantT ) + pN1.X * quantT 
     Dim tY = pN.Y * (1-quantT ) + pN1.Y * quantT 
 
-    Return New Point (tX,tY ) 
+    Return New Drawing.Point (tX,tY ) 
   End Function
 
   Public ReadOnly Property PointControls As List (of InteractiveLocation  ) 

@@ -1,6 +1,7 @@
 ﻿Public Class Canvas
 
-Dim Lines  As New  Generic.List(Of Drawable  ) 
+Public Drawables  As New  Generic.List(Of Drawable  ) 
+
 Dim Runners As New Generic.List(Of Calculateable )
 
 Dim current As new Line 
@@ -35,9 +36,9 @@ End Sub
 Sub addLine(e As MouseEventArgs)
   Select (e.Button ) 
     Case Windows.Forms.MouseButtons.Left :
-      current.asdd ( New Point ( e.Location ) ) 
+      current.Points.Add( New Point ( e.Location ) ) 
     Case Windows.Forms.MouseButtons.Right :
-      Lines.Add (current )
+      Drawables.Add (current )
       RaiseEvent createdStartable (Me,current ) 
       Me.Controls.AddRange (current.PointControls.ToArray ) 
       current.showPoints 
@@ -53,10 +54,10 @@ Select Me.Mode
     addLine(e)
   Case Modes.AddState 
     Dim s As New State 
-    Lines.Add (s) 
-    s.pos = e.Location 
-    Me.Controls.Add (s.getInteractiveLocation )
-    Me.Controls.Add (s.getInteractiveConenct )
+    Drawables.Add (s) 
+    s.locator.Pos  = e.Location 
+    Me.Controls.Add (s.locator  )
+    Me.Controls.Add (s.connector )
 End Select
 End Sub
 
@@ -83,7 +84,7 @@ End Select
     r.paint (e.Graphics) 
   Next
 
-  For Each Line As Drawable  In Lines 
+  For Each Line As Drawable  In Drawables 
     Line.draw ( e.Graphics ) 
   Next
 

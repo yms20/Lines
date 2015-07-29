@@ -8,8 +8,15 @@ public Dim mover As InteractiveLocation
 
   Public pt As Drawing.Point 'it's a structure!
 
+
+  Public Sub new (il As InteractiveLocation)
+    mover = il 
+    mover.children.Add (Me) 
+  End Sub
+
+
   Public Sub new ()
-    mover = new InteractiveLocation (Me) 
+    Me.New (new InteractiveLocation () ) 
   End Sub
 
   Public sub new (x As Integer , y As Integer )
@@ -19,9 +26,21 @@ public Dim mover As InteractiveLocation
     mover.Pos = pt 
   End Sub
 
-  Public sub new (point As Drawing.Point )
+  Public sub new (x As Integer , y As Integer,il As InteractiveLocation )
+    Me.New (il)
+    pt.x = x
+    pt.y = y 
+    mover.Pos = pt 
+  End Sub
+
+
+  Public sub new (point As Drawing.Point  )
     Me.New (point.X ,point.Y )  
   End Sub
+  Public sub new (point As Drawing.Point,il As InteractiveLocation )
+    Me.New (point.X ,point.Y,il )  
+  End Sub
+
 
   Public Property X As Integer 
   Get
@@ -72,7 +91,7 @@ Get
 End Get
 Set(value As Drawing.Point)
  pt= value 
-  mover.Pos = pt 
+  'mover.Pos = pt 
 End Set
 End Property
 End class

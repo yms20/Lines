@@ -14,13 +14,15 @@ Implements Positionable
 
   Private Sub InterActiveConnect_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
     Dim s As InteractiveConnect = e.Data.GetData("InteractiveConnect") 
+
+    s.state.addRule (state)
+
+
+    'Dim line As New Line 
+    'line.Points.Add (New Point (s.state.Pos,s.state.locator ))    
+    'line.Points.Add (New Point (state.Pos,state.locator ))
     
-    Dim line As New Line 
-    line.Points.Add (New Point (s.state.Pos))    
-    line.Points.Add (New Point (state.Pos))
-    
-    s.state.outs.Add(line ) 
-    state.ins.Add (line) 
+    's.state.outs.Add(line ) 
 
     'MsgBox (s.Location.ToString   ) 
   End Sub  
@@ -50,7 +52,7 @@ Implements Positionable
 #Region "Positionable Implementaion"
 
 
-Public Property Offset As Drawing.Point  = New Drawing.Point (20, 20 )  Implements Positionable.Offset 
+Public Property Offset As Drawing.Point  = New Drawing.Point (5, 15 )  Implements Positionable.Offset 
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get

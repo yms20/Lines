@@ -1,15 +1,15 @@
 ﻿Public Class Starter
 
-withevents m_client As Canvas
+WithEvents m_client As Canvas
 
 Public  Property Client As Canvas 
-Set
-  m_client = Value 
-  'AddHandler m_client.created , AddressOf OnClientGetBaby 
-End Set
-Get
-  Return m_client 
-End Get
+  Set
+    m_client = Value 
+    'AddHandler m_client.created , AddressOf OnClientGetBaby 
+  End Set
+  Get
+    Return m_client 
+  End Get
 End Property
 
 

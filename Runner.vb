@@ -8,7 +8,7 @@
   Public Property Offset As Drawing.Point Implements Positionable.Offset
   Public Property Pos As Drawing.Point Implements Animateable.Pos 
   Get
-    Return line.getPoint (t).pt 
+    Return line.getPoint (t)
   End Get
   Set(value  As Drawing.Point )
     
@@ -32,8 +32,8 @@
   Sub paint (g As Graphics ) Implements Drawable.draw
     If line is Nothing then Return 
 
-    Dim p As Point = line.getPoint (t) 
-    g.FillEllipse  (Brushes.BlanchedAlmond ,New Rectangle(p.X -16 , p.Y - 16 ,31,31 )) 
+    Dim p As Drawing.Point = line.getPoint (t) 
+    g.FillEllipse  (Brushes.BlanchedAlmond ,New Rectangle(p.X -16 , p.Y - 16 ,32,32 )) 
   End Sub
 
 End Class

@@ -8,7 +8,7 @@ Implements Positionable
   Dim lastMousePos As Drawing.Point = Drawing.Point.Empty
   Dim dragging As Boolean = False
 
-  Dim child As Positionable
+  Public  children As new List (Of  Positionable) 
 
 Sub New()
   InitializeComponent()
@@ -18,7 +18,7 @@ End Sub
 
 Sub New(child As Positionable)
   Me.New 
-  Me.child = child
+  Me.children.Add (child) 
 End Sub
 
 Private Sub InteractiveLocation_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -38,7 +38,9 @@ Private Sub PointInteractions_MouseMove(sender As Object, e As MouseEventArgs) H
     Dim delta As New Drawing.Point(e.X - lastMousePos.X, e.Y - lastMousePos.Y)
 
     'Location = New Point ( Location.X + deltaX , Location.Y + deltaY )  
-    If Not IsNothing(child) Then child.Pos = Pos + delta
+    'children.ForEach ( Function ( p As Positionable ) p .Pos = Pos + delta)  
+
+      Pos = Pos + delta 
   End If
 
 End Sub
@@ -47,13 +49,18 @@ Private Sub PointInteractions_MouseUp(sender As Object, e As MouseEventArgs) Han
   dragging = False
 End Sub
 
-Public Property Offset As Drawing.Point = New Drawing.Point(-5 ,-5 ) Implements Positionable.Offset
+Public Property Offset As Drawing.Point = New Drawing.Point(0 ,0 ) Implements Positionable.Offset
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get
   Return Location - Offset
 End Get
 Set(value As Drawing.Point)
+
+    For Each p As Positionable in children 
+      p.Pos = value 
+    Next
+
   Location = value + Offset
 End Set
 End Property
