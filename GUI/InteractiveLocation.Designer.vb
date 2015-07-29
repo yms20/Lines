@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Canvas
+Partial Class InteractiveLocation
     Inherits System.Windows.Forms.UserControl
 
     'UserControl überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -22,37 +22,19 @@ Partial Class Canvas
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
-    Me.TimerRefresh = New System.Windows.Forms.Timer(Me.components)
-    Me.PointInteractions1 = New PointInteractions()
     Me.SuspendLayout
     '
-    'TimerRefresh
-    '
-    Me.TimerRefresh.Enabled = true
-    Me.TimerRefresh.Interval = 20
-    '
-    'PointInteractions1
-    '
-    Me.PointInteractions1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-    Me.PointInteractions1.Location = New System.Drawing.Point(529, 169)
-    Me.PointInteractions1.Name = "PointInteractions1"
-    Me.PointInteractions1.Opacity = 125
-    Me.PointInteractions1.Size = New System.Drawing.Size(24, 25)
-    Me.PointInteractions1.TabIndex = 0
-    '
-    'Canvas
+    'InteractiveLocation
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.Controls.Add(Me.PointInteractions1)
-    Me.DoubleBuffered = true
-    Me.Name = "Canvas"
-    Me.Size = New System.Drawing.Size(883, 463)
+    Me.BackColor = System.Drawing.SystemColors.ControlDark
+    Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.Cursor = System.Windows.Forms.Cursors.SizeAll
+    Me.Name = "InteractiveLocation"
+    Me.Size = New System.Drawing.Size(10, 10)
     Me.ResumeLayout(false)
 
 End Sub
-    Friend WithEvents TimerRefresh As System.Windows.Forms.Timer
-    Friend WithEvents PointInteractions1 As PointInteractions
 
 End Class

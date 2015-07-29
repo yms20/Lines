@@ -2,22 +2,21 @@
 
 Public Class PointInteractions
 
-  Public Property Opacity As Integer = 125
   Dim lastMousePos As Point = Point.Empty 
   Dim dragging As Boolean = False  
   Dim Sizee As Integer = 10  
-  Dim index As Integer = 0 
-  Dim line As Canvas.Line = Nothing 
+  Dim index As Integer = -1 
+  Dim line As  Line= Nothing  
 
   Public Sub new 
 ' Dieser Aufruf ist für den Designer erforderlich.
-
+InitializeComponent()
 ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
 
   End Sub
 
   'Public Sub new (ByRef  p_middle As Point, ) 
-    Public Sub new (line As Canvas.Line , index As Integer ) 
+    Public Sub new (line As Line , index As Integer ) 
     InitializeComponent()
     Me.line = line 
     Me.index = index 
@@ -29,18 +28,11 @@ Public Class PointInteractions
     Me.BackColor = Color.Green 
   End Sub
 
-Protected Overrides Sub OnPaint(e As PaintEventArgs)
-  MyBase.OnPaint(e)
-  Dim br As Brush = New SolidBrush(Color.FromArgb(Opacity, BackColor))
-
-End Sub
 
 Private Sub PointInteractions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
   Dim path As New GraphicsPath
   path.AddEllipse (New Rectangle(0, 0, Width, Height))
   Me.Region =  New Region (path ) 
-
-
 End Sub
 
 Private Sub PointInteractions_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
@@ -49,7 +41,7 @@ Private Sub PointInteractions_MouseDown( sender As Object,  e As MouseEventArgs)
 End Sub
 
 Private Sub PointInteractions_MouseMove( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseMove
-  If dragging
+  If dragging and index >= 0 
     Dim deltaX As Integer = ( e.X - lastMousePos.X ) 
     Dim deltaY As Integer = ( e.Y - lastMousePos.Y ) 
     Location = New Point ( Location.X + deltaX , Location.Y + deltaY )  

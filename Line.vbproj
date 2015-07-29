@@ -6,8 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{353C7CCF-73F9-4C48-BF3F-282494527A50}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Line.My.MyApplication</StartupObject>
-    <RootNamespace>Line</RootNamespace>
+    <StartupObject>My.MyApplication</StartupObject>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Line</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
@@ -46,6 +47,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -70,16 +72,29 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvas.Designer.vb">
-      <DependentUpon>Canvas.vb</DependentUpon>
+    <Compile Include="GUI\InteractiveConnect.Designer.vb">
+      <DependentUpon>InteractiveConnect.vb</DependentUpon>
     </Compile>
-    <Compile Include="Canvas.vb">
+    <Compile Include="GUI\InteractiveConnect.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="GUI\InteractiveLocation.Designer.vb">
+      <DependentUpon>InteractiveLocation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\InteractiveLocation.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interfaces.vb" />
+    <Compile Include="GUI\Canvas.Designer.vb">
+      <DependentUpon>Canvas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Canvas.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
+    <Compile Include="GUI\Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -98,25 +113,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PointInteractions.Designer.vb">
+    <Compile Include="Line.vb" />
+    <Compile Include="GUI\PointInteractions.Designer.vb">
       <DependentUpon>PointInteractions.vb</DependentUpon>
     </Compile>
-    <Compile Include="PointInteractions.vb">
+    <Compile Include="GUI\PointInteractions.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Starter.Designer.vb">
+    <Compile Include="GUI\Starter.Designer.vb">
       <DependentUpon>Starter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Starter.vb">
+    <Compile Include="GUI\Starter.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Runner.vb" />
+    <Compile Include="State.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Canvas.resx">
+    <EmbeddedResource Include="GUI\Canvas.resx">
       <DependentUpon>Canvas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="GUI\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InteractiveConnect.resx">
+      <DependentUpon>InteractiveConnect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InteractiveLocation.resx">
+      <DependentUpon>InteractiveLocation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -124,10 +148,10 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PointInteractions.resx">
+    <EmbeddedResource Include="GUI\PointInteractions.resx">
       <DependentUpon>PointInteractions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Starter.resx">
+    <EmbeddedResource Include="GUI\Starter.resx">
       <DependentUpon>Starter.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
