@@ -22,13 +22,14 @@
 
   Public Event Finished(sender as Runner) 
 
-  Sub calc (time As Double ) Implements Calculateable.calc
-    t = sw.ElapsedMilliseconds / duration 
+  Sub calc (time As Double ) Implements Calculateable.calc 
+    t = sw.ElapsedMilliseconds / duration
     If t > 1
       sw.Reset 
-      t= 0
+      t= 1
       RaiseEvent Finished (Me) 
     End If
+
   End Sub
 
   Sub paint (g As Graphics ) Implements Drawable.draw

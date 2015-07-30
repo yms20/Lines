@@ -13,6 +13,7 @@ Inherits Drawable, Calculateable, Positionable
 
 End Interface
 
+'State and Point are Positionable
 Public Interface Positionable
 
 Property Pos As Drawing.Point 

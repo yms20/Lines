@@ -7,8 +7,7 @@ Implements Drawable, Positionable
 
 
 #Region "Positionable Implementations"
-Dim m_pos As New Drawing.Point(10, 10)
-
+  Dim m_pos As New Drawing.Point(10, 10)
 
   Public Property Offset As New Drawing.Point(-13, -13) Implements Positionable.Offset
   Public Property Pos As Drawing.Point Implements Positionable.Pos
@@ -28,11 +27,26 @@ Dim m_pos As New Drawing.Point(10, 10)
   Public rulator As New InteractiveRuleEdit(Me)
 
 
-  Public outs As New List(Of Line)
+ ' Public outs As New List(Of Line)
 
   <Description("Guut")> _
   Public Property rules As New List(Of Rule)
   Dim runners As New List(Of Runner)
+  
+  Dim runnersToDelete As New List(Of Runner)
+  
+
+  'returns all controls
+  Public Function getControls As list (of Control ) 
+    getControls = New List(Of Control )
+    getControls.AddRange (   rules.SelectMany (Of Control ) (Function (r as rule) r.getControls ))  
+    getControls.Add(connector)
+    getControls.Add(rulator )
+    getControls.Add(locator )
+
+    getControls = getControls.Distinct.ToList 
+
+  End Function
 
 #Region "Rule Implementation"
 
@@ -43,35 +57,27 @@ Dim m_pos As New Drawing.Point(10, 10)
     For Each r As Rule In rules
       If r.token = input(0) Then
         input.Dequeue()
-        Dim ru As New Runner With {.line = findLineByTarget(r.target), .Tag = input, .duration = 2000}
+        Dim ru As New Runner With {.line = r.Line , .Tag = input, .duration = 2000}
         runners.Add(ru)
         AddHandler ru.Finished, AddressOf runnerArrived
         ru.sw.Start()
-'        r.target.applyWork (input)
         Exit For
       End If
     Next
   End Sub
 
-Function findLineByTarget(state As State)
-  'look through lines 
-  For Each l As Line In outs
-    'get first moveable from last point
-    Dim mvbl As Positionable = l.Points(l.Points.Count - 1).mover.children(0)
-    'is it the wanted state?
-    If mvbl Is state Then
-      Return l
-    End If
-  Next
-End Function
-Private Sub runnerArrived(r As Runner)
+  Private Sub runnerArrived(r As Runner)
 
-  Dim mvbl As Positionable = r.line.Points(r.line.Points.Count - 1).mover.children(0)
-  Dim s As State = mvbl
-  s.applyWork(r.Tag)
+    Dim mvbl As Positionable = r.line.Points(r.line.Points.Count - 1).mover.children(0)
+    Dim s As State = mvbl
+    s.applyWork(r.Tag)
+    RemoveHandler r.Finished , AddressOf runnerArrived 
+    runnersToDelete.add (r) 
+  End Sub
 
-  'runners.Remove (r) 
-End Sub
+  Sub addRule(target As State)
+    rules.Add(New Rule (Me,target ) )
+  End Sub
 
 #End Region '"Rule Implementation"
 
@@ -91,41 +97,28 @@ End Sub
     locator.children.Add(rulator)
   End Sub
 
-
-
-
-
   Public Sub draw(g As Graphics) Implements Drawable.draw
     g.DrawEllipse(Pens.Black, New Rectangle(Pos + Offset, New Size(26, 26)))
 
-    For Each l As Line In outs
-      l.draw(g)
+    For Each r As Rule In rules 
+      r.draw (g) 
     Next
 
-  Dim rcpy As List(Of Runner) = runners.ToList
+    For i As Integer = runners.Count To 1 Step -1
+      'clear the arrived runners
+      Dim r As Runner = runners(i - 1)
+      If runnersToDelete.Contains (r)
+        runners.Remove (r)
+        runnersToDelete.Remove  (r)
+        Continue For 
+      End If
 
-SyncLock (runners)
-  For i As Integer = runners.Count To 1 Step -1
-    runners(i - 1).calc(0)
-    runners(i - 1).paint(g)
-  Next
-End SyncLock
+      r.calc(0)
+      r.paint(g)
+    Next
 
-   ' outs.ForEach (Function (l As Line ) l.draw (g) )
   End Sub
 
-Sub addRule(state As State)
-
-
-    Dim line As New Line
-    line.Points.Add(New Point(Pos, locator))
-    line.Points.Add(New Point(state.Pos, state.locator))
-
-    outs.Add(line)
-
-    rules.Add(New Rule With {.target = state, .token = Name})
-
- End Sub
 
 
 

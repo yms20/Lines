@@ -56,10 +56,18 @@ Select Me.Mode
     Dim s As New State 
     Drawables.Add (s) 
     s.locator.Pos  = e.Location 
-    Me.Controls.Add (s.locator  )
-    Me.Controls.Add (s.connector )
-    Me.Controls.Add (s.rulator )
+    'Me.Controls.Add (s.locator  )
+    'Me.Controls.Add (s.connector )
+    'Me.Controls.Add (s.rulator )
 
+    Me.Controls.AddRange   (s.getControls().ToArray  )
+
+    For Each drawable As Drawable In Drawables 
+      If drawable.GetType  is GetType (State) 
+      Dim st As State = drawable 
+      Me.Controls.AddRange (st.getControls.ToArray )
+      End If
+    Next
 
 End Select
 End Sub
