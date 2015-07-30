@@ -5,6 +5,8 @@
   Public Property line As Line
   Public Property duration As Double 'in ms
 
+  Public Property Tag As Object 
+
   Public Property Offset As Drawing.Point Implements Positionable.Offset
   Public Property Pos As Drawing.Point Implements Animateable.Pos 
   Get

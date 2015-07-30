@@ -58,6 +58,9 @@ Select Me.Mode
     s.locator.Pos  = e.Location 
     Me.Controls.Add (s.locator  )
     Me.Controls.Add (s.connector )
+    Me.Controls.Add (s.rulator )
+
+
 End Select
 End Sub
 

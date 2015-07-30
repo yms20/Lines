@@ -84,6 +84,12 @@
     <Compile Include="GUI\InteractiveLocation.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="GUI\InteractiveRuleEdit.Designer.vb">
+      <DependentUpon>InteractiveRuleEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\InteractiveRuleEdit.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Interfaces.vb" />
     <Compile Include="GUI\Canvas.Designer.vb">
       <DependentUpon>Canvas.vb</DependentUpon>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\InteractiveLocation.resx">
       <DependentUpon>InteractiveLocation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InteractiveRuleEdit.resx">
+      <DependentUpon>InteractiveRuleEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

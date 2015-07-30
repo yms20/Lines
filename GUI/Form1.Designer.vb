@@ -24,14 +24,15 @@ Partial Class Form1
     Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
     Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
+    Me.Canvas1 = New Canvas()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
-    Me.Canvas1 = New Canvas()
     Me.Starter1 = New Starter()
+    Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
     Me.ToolStripContainer1.ContentPanel.SuspendLayout
     Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout
     Me.ToolStripContainer1.SuspendLayout
@@ -43,11 +44,13 @@ Partial Class Form1
     '
     'ToolStripContainer1.ContentPanel
     '
+    Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.PropertyGrid1)
     Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Canvas1)
     Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(916, 479)
     Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
     Me.ToolStripContainer1.Location = New System.Drawing.Point(106, 0)
     Me.ToolStripContainer1.Name = "ToolStripContainer1"
+    Me.ToolStripContainer1.RightToolStripPanelVisible = false
     Me.ToolStripContainer1.Size = New System.Drawing.Size(916, 504)
     Me.ToolStripContainer1.TabIndex = 2
     Me.ToolStripContainer1.Text = "ToolStripContainer1"
@@ -55,6 +58,17 @@ Partial Class Form1
     'ToolStripContainer1.TopToolStripPanel
     '
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
+    '
+    'Canvas1
+    '
+    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
+    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
+    Me.Canvas1.Mode = Canvas.Modes.AddLine
+    Me.Canvas1.Name = "Canvas1"
+    Me.Canvas1.Size = New System.Drawing.Size(916, 479)
+    Me.Canvas1.TabIndex = 0
     '
     'ToolStrip1
     '
@@ -107,17 +121,6 @@ Partial Class Form1
     Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
     Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
     '
-    'Canvas1
-    '
-    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
-    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
-    Me.Canvas1.Mode = Canvas.Modes.AddLine
-    Me.Canvas1.Name = "Canvas1"
-    Me.Canvas1.Size = New System.Drawing.Size(916, 479)
-    Me.Canvas1.TabIndex = 0
-    '
     'Starter1
     '
     Me.Starter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -127,6 +130,14 @@ Partial Class Form1
     Me.Starter1.Name = "Starter1"
     Me.Starter1.Size = New System.Drawing.Size(106, 504)
     Me.Starter1.TabIndex = 1
+    '
+    'PropertyGrid1
+    '
+    Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Right
+    Me.PropertyGrid1.Location = New System.Drawing.Point(743, 0)
+    Me.PropertyGrid1.Name = "PropertyGrid1"
+    Me.PropertyGrid1.Size = New System.Drawing.Size(173, 479)
+    Me.PropertyGrid1.TabIndex = 1
     '
     'Form1
     '
@@ -156,5 +167,6 @@ End Sub
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripComboBox1 As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents PropertyGrid1 As System.Windows.Forms.PropertyGrid
 
 End Class
