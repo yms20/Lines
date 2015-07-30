@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
     Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
-    Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
@@ -45,7 +44,6 @@ Partial Class Form1
     '
     'ToolStripContainer1.ContentPanel
     '
-    Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.PropertyGrid1)
     Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Canvas1)
     Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(916, 479)
     Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -59,14 +57,6 @@ Partial Class Form1
     'ToolStripContainer1.TopToolStripPanel
     '
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
-    '
-    'PropertyGrid1
-    '
-    Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Right
-    Me.PropertyGrid1.Location = New System.Drawing.Point(743, 0)
-    Me.PropertyGrid1.Name = "PropertyGrid1"
-    Me.PropertyGrid1.Size = New System.Drawing.Size(173, 479)
-    Me.PropertyGrid1.TabIndex = 1
     '
     'ToolStrip1
     '
@@ -170,7 +160,6 @@ Partial Class Form1
 
 End Sub
     Friend WithEvents Canvas1 As Canvas
-    Friend WithEvents Starter1 As Starter
     Friend WithEvents ToolStripContainer1 As System.Windows.Forms.ToolStripContainer
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
@@ -178,7 +167,7 @@ End Sub
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripComboBox1 As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents PropertyGrid1 As System.Windows.Forms.PropertyGrid
     Friend WithEvents ToolStripSplitButton1 As System.Windows.Forms.ToolStripSplitButton
+    Friend WithEvents Starter1 As Starter
 
 End Class

@@ -15,7 +15,7 @@ End Property
 
 Public Sub OnClientGetBaby (sender As Canvas , baby As Line ) Handles m_client.createdStartable 
 
-  Dim startButton = New Button  () With {.Text = baby.Name & " L: " & baby.length , .Tag = baby} 
+  Dim startButton = New Button  () With {.Text = baby.Name & " L: " & baby.length , .Tag = baby , .Size = New Size (FlowLayoutPanel1.Width ,20) } 
   AddHandler startButton.Click , AddressOf start 
 
   FlowLayoutPanel1.Controls.Add (startButton  )

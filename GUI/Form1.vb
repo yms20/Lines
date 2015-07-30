@@ -1,9 +1,5 @@
 ﻿Public Class Form1
 
-Public Shared instance As PropertyGrid 
-
-
-
 Private Sub ToolStripButton3_Click( sender As Object,  e As EventArgs) Handles ToolStripButton3.Click
   
   Dim instruction  As new Queue(Of String ) 
@@ -36,7 +32,6 @@ Private Sub ToolStripButton1_Click( sender As Object,  e As EventArgs) Handles T
 End Sub
 
 Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
- instance = PropertyGrid1 
 ToolStripComboBox1.Text = "10010011"
 End Sub
 
