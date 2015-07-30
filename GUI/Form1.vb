@@ -37,6 +37,7 @@ End Sub
 
 Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
  instance = PropertyGrid1 
+ToolStripComboBox1.Text = "10010011"
 End Sub
 
 

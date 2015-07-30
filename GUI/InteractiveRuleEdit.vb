@@ -2,18 +2,15 @@
 Implements Positionable
 
 
-Dim state As State 
+Dim rule As Rule
 
-Public Sub new ( s As State )
+Public Sub new ( r As Rule )
   InitializeComponent 
-  state = s
+  rule = r 
+  TextBox1.Text = rule.token 
 End Sub
 
 
-Private Sub InteractiveRuleEdit_Click( sender As Object,  e As EventArgs) Handles MyBase.Click
- Form1.PropertyGrid1.SelectedObject = state
-
-End Sub
 
 Public Property Offset As Drawing.Point  = New Drawing.Point (15,0) Implements Positionable.Offset 
 
@@ -25,4 +22,10 @@ Set(value As Drawing.Point)
  Location = value + Offset 
 End Set
 End Property
+
+
+
+Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+  If Not IsNothing (rule) then rule.token = TextBox1.Text 
+End Sub
 End Class

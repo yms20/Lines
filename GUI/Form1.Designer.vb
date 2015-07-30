@@ -31,9 +31,9 @@ Partial Class Form1
     Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+    Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
     Me.Canvas1 = New Canvas()
     Me.Starter1 = New Starter()
-    Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
     Me.ToolStripContainer1.ContentPanel.SuspendLayout
     Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout
     Me.ToolStripContainer1.SuspendLayout
@@ -118,6 +118,16 @@ Partial Class Form1
     '
     Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
     Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
+    Me.ToolStripComboBox1.ToolTipText = "Input for StateMachin. Is read char by char left to right by statemachine"
+    '
+    'ToolStripSplitButton1
+    '
+    Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"),System.Drawing.Image)
+    Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
+    Me.ToolStripSplitButton1.Size = New System.Drawing.Size(32, 22)
+    Me.ToolStripSplitButton1.Text = "ToolStripSplitButton1"
     '
     'Canvas1
     '
@@ -139,15 +149,6 @@ Partial Class Form1
     Me.Starter1.Name = "Starter1"
     Me.Starter1.Size = New System.Drawing.Size(106, 504)
     Me.Starter1.TabIndex = 1
-    '
-    'ToolStripSplitButton1
-    '
-    Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"),System.Drawing.Image)
-    Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-    Me.ToolStripSplitButton1.Size = New System.Drawing.Size(32, 22)
-    Me.ToolStripSplitButton1.Text = "ToolStripSplitButton1"
     '
     'Form1
     '

@@ -20,3 +20,10 @@ Property Pos As Drawing.Point
 Property Offset As Drawing.Point 
 
 End Interface
+
+Public Interface Controllable
+  
+  Event ControlAdded (c As Control )
+  Function getControls As List(Of Control)
+
+End Interface

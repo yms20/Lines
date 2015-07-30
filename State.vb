@@ -1,10 +1,42 @@
 ﻿Imports System.ComponentModel
 
 Public Class State
-Implements Drawable, Positionable
+Implements Drawable, Positionable,Controllable 
+
+'State machine Node Types
+  Enum NodeTypes
+    Start
+    Node
+    Final
+  End Enum
 
 
+  Shared ctr As Integer = 0 
 
+  Public Property NodeType As NodeTypes = NodeTypes.Node 
+
+#Region "Controllable Implementations"
+
+Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
+
+
+  'returns all controls
+  Public Function getControls As list (of Control )  Implements Controllable.getControls
+    getControls = New List(Of Control )
+    getControls.AddRange (   rules.SelectMany (Of Control ) (Function (r as rule) r.getControls ))  
+    getControls.Add(connector)
+   ' getControls.Add(rulator )
+    getControls.Add(locator )
+
+    getControls = getControls.Distinct.ToList 
+
+  End Function
+
+  Sub forwardEventRuleControlAdded (c As Control ) 
+    RaiseEvent ControlAdded (c) 
+  End Sub
+
+#End Region ' "Controllable Implementations"
 
 #Region "Positionable Implementations"
   Dim m_pos As New Drawing.Point(10, 10)
@@ -20,14 +52,10 @@ Implements Drawable, Positionable
   End Property
 
 #End Region '"Positionable Implementations"
-  Public Property Name = "Test"
+  Public Property Name As String  = "Test"
 
-  Public locator As New InteractiveLocation(Me)
-  Public connector As New InteractiveConnect(Me)
-  Public rulator As New InteractiveRuleEdit(Me)
-
-
- ' Public outs As New List(Of Line)
+  Public locator As InteractiveLocation
+  Public connector As InteractiveConnect
 
   <Description("Guut")> _
   Public Property rules As New List(Of Rule)
@@ -35,18 +63,6 @@ Implements Drawable, Positionable
   
   Dim runnersToDelete As New List(Of Runner)
   
-
-  'returns all controls
-  Public Function getControls As list (of Control ) 
-    getControls = New List(Of Control )
-    getControls.AddRange (   rules.SelectMany (Of Control ) (Function (r as rule) r.getControls ))  
-    getControls.Add(connector)
-    getControls.Add(rulator )
-    getControls.Add(locator )
-
-    getControls = getControls.Distinct.ToList 
-
-  End Function
 
 #Region "Rule Implementation"
 
@@ -76,13 +92,21 @@ Implements Drawable, Positionable
   End Sub
 
   Sub addRule(target As State)
-    rules.Add(New Rule (Me,target ) )
+    Dim r As New Rule (Me,target ) 
+    AddHandler r.ControlAdded , AddressOf forwardEventRuleControlAdded 
+    r.initLine 
+    locator.children.Add (r.rulator )
+    rules.Add(r)
   End Sub
 
 #End Region '"Rule Implementation"
 
+'call this after connection Handler to ControlerAdded Event to get Controllers
+sub initController
 
-  Public Sub New()
+   locator = New InteractiveLocation(Me)
+   connector = New InteractiveConnect(Me)
+
     locator.BackColor = Color.AliceBlue
     locator.Width = 20
     locator.Height = 20
@@ -94,11 +118,37 @@ Implements Drawable, Positionable
     connector.Height = 10
 
     locator.children.Add(connector)
-    locator.children.Add(rulator)
+
+  RaiseEvent ControlAdded (locator )
+  RaiseEvent ControlAdded (connector )
+
+End Sub
+
+  Public Sub New()
+    
+  
+  Me.Name = "State " & ctr 
+  'First Node is StartNode
+  If ctr = 0
+    NodeType = NodeTypes.Start 
+  End If
+
+  ctr += 1
   End Sub
 
   Public Sub draw(g As Graphics) Implements Drawable.draw
-    g.DrawEllipse(Pens.Black, New Rectangle(Pos + Offset, New Size(26, 26)))
+
+       Dim rect As New Rectangle(Pos + Offset, New Size(26, 26))
+
+    'Draw the State depending if its Type
+    Select NodeType 
+      Case NodeTypes.Start 
+        g.FillEllipse (Brushes.Black ,rect) 
+      Case NodeTypes.Node 
+        g.DrawEllipse(Pens.Black, rect)
+      Case NodeTypes.Final 
+        g.FillEllipse (Brushes.Red ,rect ) 
+    End Select
 
     For Each r As Rule In rules 
       r.draw (g) 
@@ -117,9 +167,8 @@ Implements Drawable, Positionable
       r.paint(g)
     Next
 
+    g.DrawString (Name, SystemFonts.CaptionFont ,Brushes.Black , Pos + New Drawing.Point (-20,-28)) 
+
   End Sub
-
-
-
 
 End Class

@@ -17,8 +17,6 @@ AddState
 [Select]
 End Enum
 
-
-
 Public sub addRunner ( l As Line )
   Dim r As new Runner 
   r.duration = 5000
@@ -49,27 +47,20 @@ End Sub
 
 Private Sub Canvas_MouseClick( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseClick
 
-Select Me.Mode 
-  Case Modes.AddLine 
-    addLine(e)
-  Case Modes.AddState 
-    Dim s As New State 
-    Drawables.Add (s) 
-    s.locator.Pos  = e.Location 
-    'Me.Controls.Add (s.locator  )
-    'Me.Controls.Add (s.connector )
-    'Me.Controls.Add (s.rulator )
+  Select Me.Mode 
+    Case Modes.AddLine 
+      addLine(e)
+    Case Modes.AddState 
+      Dim s As New State 
+      AddHandler s.ControlAdded , AddressOf addControl 
+      s.initController 
+      s.locator.Pos  = e.Location 
+      Drawables.Add (s) 
+  End Select
+End Sub
 
-    Me.Controls.AddRange   (s.getControls().ToArray  )
-
-    For Each drawable As Drawable In Drawables 
-      If drawable.GetType  is GetType (State) 
-      Dim st As State = drawable 
-      Me.Controls.AddRange (st.getControls.ToArray )
-      End If
-    Next
-
-End Select
+Sub addControl (c As Control )
+  Me.Controls.Add (c) 
 End Sub
 
 Protected Overrides Sub OnPaint(e As PaintEventArgs)
