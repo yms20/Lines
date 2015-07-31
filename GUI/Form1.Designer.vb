@@ -24,21 +24,24 @@ Partial Class Form1
     Private Sub InitializeComponent()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
     Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
+    Me.Canvas1 = New Canvas()
+    Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+    Me.ToolStripButton4Select = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButton2State = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButton1Line = New System.Windows.Forms.ToolStripButton()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
     Me.ToolStripButton3Play = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
-    Me.ToolStripButton2State = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButton4Select = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButton1Line = New System.Windows.Forms.ToolStripButton()
-    Me.Canvas1 = New Canvas()
     Me.Starter1 = New Starter()
+    Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
+    Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripContainer1.ContentPanel.SuspendLayout
     Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout
     Me.ToolStripContainer1.SuspendLayout
-    Me.ToolStrip1.SuspendLayout
     Me.ToolStrip2.SuspendLayout
+    Me.ToolStrip1.SuspendLayout
+    Me.ToolStrip3.SuspendLayout
     Me.SuspendLayout
     '
     'ToolStripContainer1
@@ -60,12 +63,65 @@ Partial Class Form1
     '
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
+    Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip3)
+    '
+    'Canvas1
+    '
+    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
+    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
+    Me.Canvas1.Mode = Canvas.Modes.AddLine
+    Me.Canvas1.Name = "Canvas1"
+    Me.Canvas1.Size = New System.Drawing.Size(856, 479)
+    Me.Canvas1.TabIndex = 0
+    '
+    'ToolStrip2
+    '
+    Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
+    Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4Select, Me.ToolStripButton2State, Me.ToolStripButton1Line})
+    Me.ToolStrip2.Location = New System.Drawing.Point(146, 0)
+    Me.ToolStrip2.Name = "ToolStrip2"
+    Me.ToolStrip2.Size = New System.Drawing.Size(79, 25)
+    Me.ToolStrip2.TabIndex = 1
+    '
+    'ToolStripButton4Select
+    '
+    Me.ToolStripButton4Select.Checked = true
+    Me.ToolStripButton4Select.CheckOnClick = true
+    Me.ToolStripButton4Select.CheckState = System.Windows.Forms.CheckState.Checked
+    Me.ToolStripButton4Select.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton4Select.Image = CType(resources.GetObject("ToolStripButton4Select.Image"),System.Drawing.Image)
+    Me.ToolStripButton4Select.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton4Select.Name = "ToolStripButton4Select"
+    Me.ToolStripButton4Select.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton4Select.Text = "ToolStripButton4"
+    '
+    'ToolStripButton2State
+    '
+    Me.ToolStripButton2State.CheckOnClick = true
+    Me.ToolStripButton2State.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton2State.Image = Global.My.Resources.Resources.State
+    Me.ToolStripButton2State.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton2State.Name = "ToolStripButton2State"
+    Me.ToolStripButton2State.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton2State.Text = "ToolStripButton2"
+    '
+    'ToolStripButton1Line
+    '
+    Me.ToolStripButton1Line.CheckOnClick = true
+    Me.ToolStripButton1Line.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton1Line.Image = Global.My.Resources.Resources.Line
+    Me.ToolStripButton1Line.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton1Line.Name = "ToolStripButton1Line"
+    Me.ToolStripButton1Line.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton1Line.Text = "ToolStripButton1"
     '
     'ToolStrip1
     '
     Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
     Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator1, Me.ToolStripComboBox1, Me.ToolStripButton3Play})
-    Me.ToolStrip1.Location = New System.Drawing.Point(89, 0)
+    Me.ToolStrip1.Location = New System.Drawing.Point(231, 0)
     Me.ToolStrip1.Name = "ToolStrip1"
     Me.ToolStrip1.Size = New System.Drawing.Size(162, 25)
     Me.ToolStrip1.TabIndex = 0
@@ -91,58 +147,6 @@ Partial Class Form1
     Me.ToolStripButton3Play.Size = New System.Drawing.Size(23, 22)
     Me.ToolStripButton3Play.Text = "ToolStripButton3"
     '
-    'ToolStrip2
-    '
-    Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
-    Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4Select, Me.ToolStripButton2State, Me.ToolStripButton1Line})
-    Me.ToolStrip2.Location = New System.Drawing.Point(4, 0)
-    Me.ToolStrip2.Name = "ToolStrip2"
-    Me.ToolStrip2.Size = New System.Drawing.Size(79, 25)
-    Me.ToolStrip2.TabIndex = 1
-    '
-    'ToolStripButton2State
-    '
-    Me.ToolStripButton2State.CheckOnClick = true
-    Me.ToolStripButton2State.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton2State.Image = Global.My.Resources.Resources.State
-    Me.ToolStripButton2State.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton2State.Name = "ToolStripButton2State"
-    Me.ToolStripButton2State.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton2State.Text = "ToolStripButton2"
-    '
-    'ToolStripButton4Select
-    '
-    Me.ToolStripButton4Select.Checked = true
-    Me.ToolStripButton4Select.CheckOnClick = true
-    Me.ToolStripButton4Select.CheckState = System.Windows.Forms.CheckState.Checked
-    Me.ToolStripButton4Select.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton4Select.Image = CType(resources.GetObject("ToolStripButton4Select.Image"),System.Drawing.Image)
-    Me.ToolStripButton4Select.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton4Select.Name = "ToolStripButton4Select"
-    Me.ToolStripButton4Select.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton4Select.Text = "ToolStripButton4"
-    '
-    'ToolStripButton1Line
-    '
-    Me.ToolStripButton1Line.CheckOnClick = true
-    Me.ToolStripButton1Line.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton1Line.Image = Global.My.Resources.Resources.Line
-    Me.ToolStripButton1Line.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton1Line.Name = "ToolStripButton1Line"
-    Me.ToolStripButton1Line.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton1Line.Text = "ToolStripButton1"
-    '
-    'Canvas1
-    '
-    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
-    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
-    Me.Canvas1.Mode = Canvas.Modes.AddLine
-    Me.Canvas1.Name = "Canvas1"
-    Me.Canvas1.Size = New System.Drawing.Size(856, 479)
-    Me.Canvas1.TabIndex = 0
-    '
     'Starter1
     '
     Me.Starter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -152,6 +156,24 @@ Partial Class Form1
     Me.Starter1.Name = "Starter1"
     Me.Starter1.Size = New System.Drawing.Size(166, 504)
     Me.Starter1.TabIndex = 1
+    '
+    'ToolStrip3
+    '
+    Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
+    Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
+    Me.ToolStrip3.Location = New System.Drawing.Point(7, 0)
+    Me.ToolStrip3.Name = "ToolStrip3"
+    Me.ToolStrip3.Size = New System.Drawing.Size(64, 25)
+    Me.ToolStrip3.TabIndex = 2
+    '
+    'ToolStripButton1
+    '
+    Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"),System.Drawing.Image)
+    Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton1.Name = "ToolStripButton1"
+    Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton1.Text = "ToolStripButton1Save"
     '
     'Form1
     '
@@ -167,10 +189,12 @@ Partial Class Form1
     Me.ToolStripContainer1.TopToolStripPanel.PerformLayout
     Me.ToolStripContainer1.ResumeLayout(false)
     Me.ToolStripContainer1.PerformLayout
-    Me.ToolStrip1.ResumeLayout(false)
-    Me.ToolStrip1.PerformLayout
     Me.ToolStrip2.ResumeLayout(false)
     Me.ToolStrip2.PerformLayout
+    Me.ToolStrip1.ResumeLayout(false)
+    Me.ToolStrip1.PerformLayout
+    Me.ToolStrip3.ResumeLayout(false)
+    Me.ToolStrip3.PerformLayout
     Me.ResumeLayout(false)
 
 End Sub
@@ -185,5 +209,7 @@ End Sub
     Friend WithEvents Starter1 As Starter
     Friend WithEvents ToolStripButton4Select As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStrip2 As System.Windows.Forms.ToolStrip
+    Friend WithEvents ToolStrip3 As System.Windows.Forms.ToolStrip
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
 
 End Class

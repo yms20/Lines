@@ -1,4 +1,5 @@
-﻿Public Class Canvas
+﻿<Serializable > _
+Public Class Canvas
 
 Public Drawables  As New  Generic.List(Of Drawable  ) 
 
@@ -64,17 +65,18 @@ Sub addControl (c As Control )
 End Sub
 
 
-Public sub startStateMachine (instruction As queue(Of String ) )
+Public Function  startStateMachine (instruction As queue(Of String ) ) As State 
   
   For Each d As Drawable In Drawables
     If d.GetType is GetType (State)
       Dim s As State = d
       s.applyWork (instruction ) 
+      Return s 
       Exit For 
     End If
   Next
 
-End Sub
+End Function 
 
 Protected Overrides Sub OnPaint(e As PaintEventArgs)
 MyBase.OnPaint(e)
