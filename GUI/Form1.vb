@@ -60,8 +60,17 @@ Private Sub ToolStripComboBox1_KeyDown( sender As Object,  e As KeyEventArgs) Ha
   End Select
 End Sub
 
-
-
-
-
+Private Sub Canvas1_MouseDown( sender As Object,  e As MouseEventArgs) Handles Canvas1.MouseDown 
+  Select e.Button 
+    'on right cllick
+    Case Windows.Forms.MouseButtons.Right 
+      Select Canvas1.Mode 
+        'in state mode 
+        Case Canvas.Modes.AddState 
+          'go back to selection mode
+          ToolStripButton4Select.PerformClick 
+      End Select
+       
+  End Select
+End Sub
 End Class

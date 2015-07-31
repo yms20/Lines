@@ -47,12 +47,12 @@ Partial Class Form1
     'ToolStripContainer1.ContentPanel
     '
     Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Canvas1)
-    Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(916, 479)
+    Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(856, 479)
     Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.ToolStripContainer1.Location = New System.Drawing.Point(106, 0)
+    Me.ToolStripContainer1.Location = New System.Drawing.Point(166, 0)
     Me.ToolStripContainer1.Name = "ToolStripContainer1"
     Me.ToolStripContainer1.RightToolStripPanelVisible = false
-    Me.ToolStripContainer1.Size = New System.Drawing.Size(916, 504)
+    Me.ToolStripContainer1.Size = New System.Drawing.Size(856, 504)
     Me.ToolStripContainer1.TabIndex = 2
     Me.ToolStripContainer1.Text = "ToolStripContainer1"
     '
@@ -112,7 +112,9 @@ Partial Class Form1
     '
     'ToolStripButton4Select
     '
+    Me.ToolStripButton4Select.Checked = true
     Me.ToolStripButton4Select.CheckOnClick = true
+    Me.ToolStripButton4Select.CheckState = System.Windows.Forms.CheckState.Checked
     Me.ToolStripButton4Select.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
     Me.ToolStripButton4Select.Image = CType(resources.GetObject("ToolStripButton4Select.Image"),System.Drawing.Image)
     Me.ToolStripButton4Select.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -122,9 +124,7 @@ Partial Class Form1
     '
     'ToolStripButton1Line
     '
-    Me.ToolStripButton1Line.Checked = true
     Me.ToolStripButton1Line.CheckOnClick = true
-    Me.ToolStripButton1Line.CheckState = System.Windows.Forms.CheckState.Checked
     Me.ToolStripButton1Line.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
     Me.ToolStripButton1Line.Image = Global.My.Resources.Resources.Line
     Me.ToolStripButton1Line.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -140,7 +140,7 @@ Partial Class Form1
     Me.Canvas1.Location = New System.Drawing.Point(0, 0)
     Me.Canvas1.Mode = Canvas.Modes.AddLine
     Me.Canvas1.Name = "Canvas1"
-    Me.Canvas1.Size = New System.Drawing.Size(916, 479)
+    Me.Canvas1.Size = New System.Drawing.Size(856, 479)
     Me.Canvas1.TabIndex = 0
     '
     'Starter1
@@ -150,7 +150,7 @@ Partial Class Form1
     Me.Starter1.Dock = System.Windows.Forms.DockStyle.Left
     Me.Starter1.Location = New System.Drawing.Point(0, 0)
     Me.Starter1.Name = "Starter1"
-    Me.Starter1.Size = New System.Drawing.Size(106, 504)
+    Me.Starter1.Size = New System.Drawing.Size(166, 504)
     Me.Starter1.TabIndex = 1
     '
     'Form1
