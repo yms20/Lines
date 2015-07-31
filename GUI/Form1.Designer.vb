@@ -25,18 +25,20 @@ Partial Class Form1
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
     Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-    Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-    Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
-    Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
+    Me.ToolStripButton3Play = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+    Me.ToolStripButton2State = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButton4Select = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStripButton1Line = New System.Windows.Forms.ToolStripButton()
     Me.Canvas1 = New Canvas()
     Me.Starter1 = New Starter()
     Me.ToolStripContainer1.ContentPanel.SuspendLayout
     Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout
     Me.ToolStripContainer1.SuspendLayout
     Me.ToolStrip1.SuspendLayout
+    Me.ToolStrip2.SuspendLayout
     Me.SuspendLayout
     '
     'ToolStripContainer1
@@ -56,48 +58,17 @@ Partial Class Form1
     '
     'ToolStripContainer1.TopToolStripPanel
     '
+    Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
     '
     'ToolStrip1
     '
     Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-    Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripComboBox1, Me.ToolStripSplitButton1})
-    Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
+    Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator1, Me.ToolStripComboBox1, Me.ToolStripButton3Play})
+    Me.ToolStrip1.Location = New System.Drawing.Point(89, 0)
     Me.ToolStrip1.Name = "ToolStrip1"
-    Me.ToolStrip1.Size = New System.Drawing.Size(240, 25)
+    Me.ToolStrip1.Size = New System.Drawing.Size(162, 25)
     Me.ToolStrip1.TabIndex = 0
-    '
-    'ToolStripButton1
-    '
-    Me.ToolStripButton1.Checked = true
-    Me.ToolStripButton1.CheckOnClick = true
-    Me.ToolStripButton1.CheckState = System.Windows.Forms.CheckState.Checked
-    Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"),System.Drawing.Image)
-    Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton1.Name = "ToolStripButton1"
-    Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton1.Text = "ToolStripButton1"
-    '
-    'ToolStripButton2
-    '
-    Me.ToolStripButton2.CheckOnClick = true
-    Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"),System.Drawing.Image)
-    Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton2.Name = "ToolStripButton2"
-    Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton2.Text = "ToolStripButton2"
-    '
-    'ToolStripButton3
-    '
-    Me.ToolStripButton3.CheckOnClick = true
-    Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"),System.Drawing.Image)
-    Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripButton3.Name = "ToolStripButton3"
-    Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
-    Me.ToolStripButton3.Text = "ToolStripButton3"
     '
     'ToolStripSeparator1
     '
@@ -110,14 +81,56 @@ Partial Class Form1
     Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
     Me.ToolStripComboBox1.ToolTipText = "Input for StateMachin. Is read char by char left to right by statemachine"
     '
-    'ToolStripSplitButton1
+    'ToolStripButton3Play
     '
-    Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-    Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"),System.Drawing.Image)
-    Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-    Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-    Me.ToolStripSplitButton1.Size = New System.Drawing.Size(32, 22)
-    Me.ToolStripSplitButton1.Text = "ToolStripSplitButton1"
+    Me.ToolStripButton3Play.CheckOnClick = true
+    Me.ToolStripButton3Play.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton3Play.Image = Global.My.Resources.Resources.Start
+    Me.ToolStripButton3Play.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton3Play.Name = "ToolStripButton3Play"
+    Me.ToolStripButton3Play.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton3Play.Text = "ToolStripButton3"
+    '
+    'ToolStrip2
+    '
+    Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
+    Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4Select, Me.ToolStripButton2State, Me.ToolStripButton1Line})
+    Me.ToolStrip2.Location = New System.Drawing.Point(4, 0)
+    Me.ToolStrip2.Name = "ToolStrip2"
+    Me.ToolStrip2.Size = New System.Drawing.Size(79, 25)
+    Me.ToolStrip2.TabIndex = 1
+    '
+    'ToolStripButton2State
+    '
+    Me.ToolStripButton2State.CheckOnClick = true
+    Me.ToolStripButton2State.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton2State.Image = Global.My.Resources.Resources.State
+    Me.ToolStripButton2State.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton2State.Name = "ToolStripButton2State"
+    Me.ToolStripButton2State.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton2State.Text = "ToolStripButton2"
+    '
+    'ToolStripButton4Select
+    '
+    Me.ToolStripButton4Select.CheckOnClick = true
+    Me.ToolStripButton4Select.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton4Select.Image = CType(resources.GetObject("ToolStripButton4Select.Image"),System.Drawing.Image)
+    Me.ToolStripButton4Select.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton4Select.Name = "ToolStripButton4Select"
+    Me.ToolStripButton4Select.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton4Select.Text = "ToolStripButton4"
+    '
+    'ToolStripButton1Line
+    '
+    Me.ToolStripButton1Line.Checked = true
+    Me.ToolStripButton1Line.CheckOnClick = true
+    Me.ToolStripButton1Line.CheckState = System.Windows.Forms.CheckState.Checked
+    Me.ToolStripButton1Line.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+    Me.ToolStripButton1Line.Image = Global.My.Resources.Resources.Line
+    Me.ToolStripButton1Line.ImageTransparentColor = System.Drawing.Color.Magenta
+    Me.ToolStripButton1Line.Name = "ToolStripButton1Line"
+    Me.ToolStripButton1Line.Size = New System.Drawing.Size(23, 22)
+    Me.ToolStripButton1Line.Text = "ToolStripButton1"
     '
     'Canvas1
     '
@@ -156,18 +169,21 @@ Partial Class Form1
     Me.ToolStripContainer1.PerformLayout
     Me.ToolStrip1.ResumeLayout(false)
     Me.ToolStrip1.PerformLayout
+    Me.ToolStrip2.ResumeLayout(false)
+    Me.ToolStrip2.PerformLayout
     Me.ResumeLayout(false)
 
 End Sub
     Friend WithEvents Canvas1 As Canvas
     Friend WithEvents ToolStripContainer1 As System.Windows.Forms.ToolStripContainer
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
-    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton1Line As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton2State As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton3Play As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripComboBox1 As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents ToolStripSplitButton1 As System.Windows.Forms.ToolStripSplitButton
     Friend WithEvents Starter1 As Starter
+    Friend WithEvents ToolStripButton4Select As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStrip2 As System.Windows.Forms.ToolStrip
 
 End Class

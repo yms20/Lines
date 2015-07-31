@@ -3,6 +3,8 @@ Public Class   Point
 Implements Positionable
 
 public Dim mover As InteractiveLocation
+Public Event PosChanged(sender As Point)
+
 
 #Region "Wrapper Methods"
 
@@ -33,10 +35,10 @@ public Dim mover As InteractiveLocation
     mover.Pos = pt 
   End Sub
 
-
   Public sub new (point As Drawing.Point  )
     Me.New (point.X ,point.Y )  
   End Sub
+
   Public sub new (point As Drawing.Point,il As InteractiveLocation )
     Me.New (point.X ,point.Y,il )  
   End Sub
@@ -65,21 +67,21 @@ public Dim mover As InteractiveLocation
     End Get
   End Property 
  
-   Public Shared Operator +(ByVal Value As Point, ByVal Add As Point) As Drawing.Point 
-      Return Value.pt + Add.pt
-    End Operator
+   'Public Shared Operator +(ByVal Value As Point, ByVal Add As Point) As Drawing.Point 
+   '   Return Value.pt + Add.pt
+   ' End Operator
 
-   Public Shared Operator -(ByVal Value As Point, ByVal Add As Point) As Drawing.Point 
-      Return Value.pt - Add.pt
-    End Operator
+   'Public Shared Operator -(ByVal Value As Point, ByVal Add As Point) As Drawing.Point 
+   '   Return Value.pt - Add.pt
+   ' End Operator
 
-   Public Shared Operator -(ByVal Value As Point, ByVal Add As Drawing.Point) As Drawing.Point 
-      Return Value.pt - Add
-    End Operator
+   'Public Shared Operator -(ByVal Value As Point, ByVal Add As Drawing.Point) As Drawing.Point 
+   '   Return Value.pt - Add
+   ' End Operator
 
-   Public Shared Operator -(ByVal Value As Drawing.Point, ByVal Add As Point) As Drawing.Point 
-      Return Value - Add.pt 
-    End Operator
+   'Public Shared Operator -(ByVal Value As Drawing.Point, ByVal Add As Point) As Drawing.Point 
+   '   Return Value - Add.pt 
+   ' End Operator
 
 #End Region '"Wrapper Methods"
 
@@ -91,6 +93,7 @@ Get
 End Get
 Set(value As Drawing.Point)
  pt= value 
+  RaiseEvent PosChanged (Me) 
   'mover.Pos = pt 
 End Set
 End Property

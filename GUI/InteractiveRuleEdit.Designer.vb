@@ -32,11 +32,11 @@ Partial Class InteractiveRuleEdit
             Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
     Me.TextBox1.BackColor = System.Drawing.Color.WhiteSmoke
     Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 5.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-    Me.TextBox1.Location = New System.Drawing.Point(3, 3)
-    Me.TextBox1.Multiline = true
+    Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+    Me.TextBox1.Location = New System.Drawing.Point(0, 0)
+    Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
     Me.TextBox1.Name = "TextBox1"
-    Me.TextBox1.Size = New System.Drawing.Size(14, 14)
+    Me.TextBox1.Size = New System.Drawing.Size(14, 11)
     Me.TextBox1.TabIndex = 0
     Me.TextBox1.Text = "0"
     Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -45,10 +45,13 @@ Partial Class InteractiveRuleEdit
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.AutoSize = true
+    Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
     Me.BackColor = System.Drawing.Color.Black
     Me.Controls.Add(Me.TextBox1)
+    Me.Margin = New System.Windows.Forms.Padding(0)
     Me.Name = "InteractiveRuleEdit"
-    Me.Size = New System.Drawing.Size(14, 14)
+    Me.Size = New System.Drawing.Size(14, 11)
     Me.ResumeLayout(false)
     Me.PerformLayout
 

@@ -26,6 +26,10 @@ End Property
 
 
 Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+  me.Width =   TextRenderer.MeasureText (TextBox1.Text,TextBox1.Font ).Width 
+  me.Width =   TextBox1.Width + 2 
+
   If Not IsNothing (rule) then rule.token = TextBox1.Text 
 End Sub
 End Class

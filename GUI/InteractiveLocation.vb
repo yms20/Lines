@@ -23,9 +23,9 @@ End Sub
 
 Private Sub InteractiveLocation_Load(sender As Object, e As EventArgs) Handles Me.Load
   'make the order round
-  'Dim path As New GraphicsPath
-  'path.AddEllipse(New Rectangle(0, 0, Width, Height))
-  'Me.Region = New Region(path)
+  Dim path As New GraphicsPath
+  path.AddEllipse(New Rectangle(0, 0, Width, Height))
+  Me.Region = New Region(path)
 End Sub
 
 Private Sub PointInteractions_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
@@ -49,7 +49,7 @@ Private Sub PointInteractions_MouseUp(sender As Object, e As MouseEventArgs) Han
   dragging = False
 End Sub
 
-Public Property Offset As Drawing.Point = New Drawing.Point(0 ,0 ) Implements Positionable.Offset
+Public Property Offset As Drawing.Point = New Drawing.Point(-5 ,-5 ) Implements Positionable.Offset
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
 Get

@@ -12,7 +12,6 @@ Implements Drawable, Positionable,Controllable
 
 
   Shared ctr As Integer = 0 
-
   Public Property NodeType As NodeTypes = NodeTypes.Node 
 
 #Region "Controllable Implementations"

@@ -12,7 +12,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Public Property source As State
   Public Property target As State
 
-  Public Property token As String = "Empty"
+  Public Property token As String = "1"
 
   Public Property Line As new Line 
   Public Property rulator As InteractiveRuleEdit
@@ -29,6 +29,7 @@ Public Sub initLine
   Line.Points.Add (New Point (source.Pos , source.locator ))
   Dim middlePoint As Point = New Point (source.pos.X / 2 + target.Pos.X /2 ,  source.pos.Y/ 2 + target.Pos.Y/2  )
   Line.Points.Add (middlePoint )
+  AddHandler middlePoint.PosChanged , AddressOf handlePointChanged 
   RaiseEvent ControlAdded (middlePoint.mover ) 
   Line.Points.Add (New Point (target.Pos , target.locator ))
 
@@ -38,6 +39,10 @@ Public Sub initLine
   RaiseEvent ControlAdded (rulator )
 End Sub
 
+Private Sub handlePointChanged ( p As Point ) 
+  rulator.Offset = Line.getPoint (0.15) - Line.Points (0).pt  
+  rulator.Pos = source.Pos 
+End Sub
 
 Public Sub draw(g As Graphics) Implements Drawable.draw
   rulator.Offset = Line.getPoint (0.15) - Line.Points (0).pt  

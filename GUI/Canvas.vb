@@ -63,6 +63,19 @@ Sub addControl (c As Control )
   Me.Controls.Add (c) 
 End Sub
 
+
+Public sub startStateMachine (instruction As queue(Of String ) )
+  
+  For Each d As Drawable In Drawables
+    If d.GetType is GetType (State)
+      Dim s As State = d
+      s.applyWork (instruction ) 
+      Exit For 
+    End If
+  Next
+
+End Sub
+
 Protected Overrides Sub OnPaint(e As PaintEventArgs)
 MyBase.OnPaint(e)
 
