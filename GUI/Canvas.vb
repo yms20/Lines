@@ -14,6 +14,7 @@ Event createdStartable (sender as Canvas, baby As Line)
 
 Public Enum Modes
 AddLine
+AddStartState
 AddState
 [Select]
 End Enum
@@ -51,9 +52,13 @@ Private Sub Canvas_MouseClick( sender As Object,  e As MouseEventArgs) Handles M
   Select Me.Mode 
     Case Modes.AddLine 
       addLine(e)
-    Case Modes.AddState 
+    Case Modes.AddState , Modes.AddStartState 
       Dim s As New State 
+      If Mode = Modes.AddStartState then s.NodeType =State.NodeTypes.Start 
+
       AddHandler s.ControlAdded , AddressOf addControl 
+      AddHandler s.disposed  , AddressOf removeState
+
       s.initController 
       s.locator.Pos  = e.Location 
       Drawables.Add (s) 
@@ -70,12 +75,15 @@ Public Function  startStateMachine (instruction As queue(Of String ) ) As State
   For Each d As Drawable In Drawables
     If d.GetType is GetType (State)
       Dim s As State = d
-      s.applyWork (instruction ) 
-      Return s 
-      Exit For 
+      If s.NodeType = State.NodeTypes.Start 
+        s.applyWork (New Queue(Of String) (  instruction ) ) 
+
+      End If
+      'Return s 
+      'Exit For 
     End If
   Next
-
+  
 End Function 
 
 Protected Overrides Sub OnPaint(e As PaintEventArgs)
@@ -121,6 +129,10 @@ Private Sub TimerRefresh_Tick( sender As Object,  e As EventArgs) Handles TimerR
   Next
   Refresh
 End Sub
+
+Private Sub removeState(sender As State )
+    Drawables.Remove (sender) 
+ End Sub 
 
  
 End Class

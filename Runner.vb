@@ -23,7 +23,8 @@
   Public Event Finished(sender as Runner) 
 
   Sub calc (time As Double ) Implements Calculateable.calc 
-    t = sw.ElapsedMilliseconds / duration
+    't = sw.ElapsedMilliseconds / duration 
+    t = sw.ElapsedMilliseconds / Math.Max ( line.length , 1 ) 
     If t > 1
       sw.Reset 
       t= 1

@@ -4,7 +4,9 @@ Imports System.Runtime.Serialization
 
 <DataContractAttribute> _ 
 Public Class State
-Implements Drawable, Positionable, Controllable
+Implements Drawable, Positionable, Controllable, IDisposable
+
+  Event disposed (sender As State )
 
 'State machine Node Types
   Enum NodeTypes
@@ -27,7 +29,6 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     getControls = New List(Of Control)
     getControls.AddRange(rules.SelectMany(Of Control)(Function(r As Rule) r.getControls))
     getControls.Add(connector)
-   ' getControls.Add(rulator )
     getControls.Add(locator)
 
     getControls = getControls.Distinct.ToList
@@ -64,6 +65,10 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Public locator As InteractiveLocation
   <XmlIgnore()> _
   Public connector As InteractiveConnect
+
+  <XmlIgnore()> _
+  Public deletor As InteractiveRemove
+
 <DataMemberAttribute> _
   Public Property rules As New List(Of Rule)
 
@@ -77,14 +82,17 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Public Sub applyWork(input As Generic.Queue(Of String))
     If input.Count = 0 Then Return
     Console.WriteLine(String.Format("State: {0} Verarbeitet Token: {1} ", Name, input(0)))
+
+    Dim currentToken = input.Dequeue()
+
     For Each r As Rule In rules
-      If r.token = input(0) Then
-        input.Dequeue()
-        Dim ru As New Runner With {.line = r.Line, .Tag = input, .duration = 2000}
+      If r.token = currentToken Then
+
+        Dim ru As New Runner With {.line = r.Line, .Tag = New Queue(Of String)( input) , .duration = 2000}
         runners.Add(ru)
         AddHandler ru.Finished, AddressOf runnerArrived
         ru.sw.Start()
-        Exit For
+        'Exit For
       End If
     Next
   End Sub
@@ -103,6 +111,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     AddHandler r.ControlAdded, AddressOf forwardEventRuleControlAdded
     r.initLine()
     locator.children.Add(r.rulator)
+    locator.children.Add(r.deletor) 
     rules.Add(r)
   End Sub
 
@@ -113,6 +122,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 
    locator = New InteractiveLocation(Me)
    connector = New InteractiveConnect(Me)
+    deletor = New InteractiveRemove (Me) 
 
     locator.BackColor = Color.AliceBlue
     locator.Width = 20
@@ -124,10 +134,18 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     connector.Width = 10
     connector.Height = 10
 
+    deletor.Width = 10
+    deletor.Height = 10 
+    deletor.BackColor = Color.Red 
+
     locator.children.Add(connector)
+    locator.children.Add(deletor ) 
 
   RaiseEvent ControlAdded(locator)
   RaiseEvent ControlAdded(connector)
+  RaiseEvent ControlAdded(deletor)
+
+
 
 End Sub
 
@@ -136,9 +154,9 @@ End Sub
 
   Me.Name = "State " & ctr
   'First Node is StartNode
-  If ctr = 0 Then
-    NodeType = NodeTypes.Start
-  End If
+  'If ctr = 0 Then
+  '  NodeType = NodeTypes.Start
+  'End If
 
   ctr += 1
   End Sub
@@ -177,5 +195,46 @@ End Sub
     g.DrawString(Name, SystemFonts.CaptionFont, Brushes.Black, Pos + New Drawing.Point(-20, -28))
 
   End Sub
+
+#Region "IDisposable Support"
+Private disposedValue As Boolean' So ermitteln Sie überflüssige Aufrufe
+
+' IDisposable
+Protected Overridable Sub Dispose(disposing As Boolean)
+If Not Me.disposedValue Then
+If disposing Then
+' TODO: Verwalteten Zustand löschen (verwaltete Objekte).
+
+  For Each r As Rule In rules.ToArray 
+    r.Dispose 
+  Next
+  rules.Clear 
+
+  connector.Dispose 
+  locator.Dispose 
+  deletor.Dispose 
+
+End If
+' TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalize() unten überschreiben.
+' TODO: Große Felder auf NULL festlegen.
+End If
+Me.disposedValue = True
+End Sub
+
+' TODO: Finalize() nur überschreiben, wenn Dispose(ByVal disposing As Boolean) oben über Code zum Freigeben von nicht verwalteten Ressourcen verfügt.
+'Protected Overrides Sub Finalize()
+'    ' Ändern Sie diesen Code nicht. Fügen Sie oben in Dispose(ByVal disposing As Boolean) Bereinigungscode ein.
+'    Dispose(False)
+'    MyBase.Finalize()
+'End Sub
+
+' Dieser Code wird von Visual Basic hinzugefügt, um das Dispose-Muster richtig zu implementieren.
+Public Sub Dispose() Implements IDisposable.Dispose
+' Ändern Sie diesen Code nicht. Fügen Sie oben in Dispose(disposing As Boolean) Bereinigungscode ein.
+Dispose(True)
+GC.SuppressFinalize(Me)
+RaiseEvent disposed (Me) 
+End Sub
+#End Region
 
 End Class

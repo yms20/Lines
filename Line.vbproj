@@ -31,7 +31,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
@@ -106,6 +106,12 @@
     <Compile Include="GUI\InteractiveRuleEdit.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="GUI\InteractiveRemove.Designer.vb">
+      <DependentUpon>InteractiveRemove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\InteractiveRemove.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Interfaces.vb" />
     <Compile Include="GUI\Canvas.Designer.vb">
       <DependentUpon>Canvas.vb</DependentUpon>
@@ -163,6 +169,9 @@
     <EmbeddedResource Include="GUI\InteractiveRuleEdit.resx">
       <DependentUpon>InteractiveRuleEdit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InteractiveRemove.resx">
+      <DependentUpon>InteractiveRemove.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -210,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Start.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartState.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

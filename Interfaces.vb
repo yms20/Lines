@@ -1,7 +1,6 @@
 ﻿
 Public Interface Drawable
- sub draw(g As Graphics )
-
+  Sub draw(g As Graphics )
 End Interface
 
 Public Interface Calculateable

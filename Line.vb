@@ -4,7 +4,7 @@
 Public Class Line
 Implements Drawable, Positionable
 
-
+  
 
   Shared ctr As Integer = 0
 <DataMemberAttribute> _

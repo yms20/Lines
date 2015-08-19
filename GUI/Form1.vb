@@ -28,6 +28,10 @@ End Sub
 
 'Toolstrip2 - Canvas Mode Select 
 
+Private Sub ToolStripButton2StartState_Click( sender As Object,  e As EventArgs) Handles ToolStripButton2StartState.Click
+  Canvas1.Mode = Canvas.Modes.AddStartState 
+End Sub
+
 Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2State.Click
   Canvas1.Mode = Canvas.Modes.AddState
 End Sub
@@ -84,6 +88,7 @@ Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles T
   'Dim s As New  Rule  (New State , New State)
   Dim s As   State = startStateMachine
  
+  If IsNothing (s) then Return 'zz gitb start statemachine nichts zurück weil es mehrere start states geben kann
 
   Dim serializer As New DataContractSerializer(s.GetType )
   Dim writer As New MemoryStream
@@ -102,4 +107,6 @@ End Sub
 Private Sub Canvas1_Click(sender As Object, e As EventArgs)
 
 End Sub
+
+
 End Class
