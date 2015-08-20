@@ -5,7 +5,7 @@ Public Drawables  As New  Generic.List(Of Drawable  )
 
 Dim Runners As New Generic.List(Of Calculateable )
 
-Dim current As new Line 
+Dim WithEvents current As new Line 
 dim lastMousePos as new Drawing.Point 
 
 Public Property Mode As Modes 
@@ -40,10 +40,18 @@ Sub addLine(e As MouseEventArgs)
     Case Windows.Forms.MouseButtons.Right :
       Drawables.Add (current )
       RaiseEvent createdStartable (Me,current ) 
-      Me.Controls.AddRange (current.PointControls.ToArray ) 
-      current.showPoints 
+      'Me.Controls.AddRange (current.PointControls.ToArray ) 
+      'current.showPoints 
+      AddHandler current.detatch , AddressOf handleLineControllDetached 
       current = New Line 
   End Select
+End Sub
+
+sub handleLineCotroleAdded(Control as Control )  Handles current.ControlAdded 
+  Me.Controls.Add (Control ) 
+End Sub
+Sub handleLineControllDetached (control As Control ) Handles current.detatch 
+Me.Controls.Remove (control) 
 End Sub
 
 
@@ -101,9 +109,6 @@ Case Modes.AddLine
     e.Graphics.DrawString (String.Format ("L:{0:0.00}",deltaLength), SystemFonts.MessageBoxFont  ,Brushes.AliceBlue,new PointF( lastMousePos.X ,lastMousePos.Y )  ) 
   End If
 End Select
-
-
-
 
   For Each r As Runner In Runners 
     r.paint (e.Graphics) 

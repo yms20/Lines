@@ -21,6 +21,17 @@ Sub New(child As Positionable)
   Me.children.Add (child) 
 End Sub
 
+Private Sub handleDetach (p As Positionable )
+  RemoveHandler p.detatch , AddressOf handleDetach 
+  Me.children.Remove (p) 
+End Sub
+
+Public Sub AddClient(p As Positionable )
+  AddHandler p.detatch , AddressOf handleDetach 
+  children.Add (p) 
+  p.Pos = Me.Pos 
+End Sub
+
 Private Sub InteractiveLocation_Load(sender As Object, e As EventArgs) Handles Me.Load
   'make the order round
   Dim path As New GraphicsPath
@@ -49,6 +60,11 @@ Private Sub PointInteractions_MouseUp(sender As Object, e As MouseEventArgs) Han
   dragging = False
 End Sub
 
+
+#Region "Positionable Implementaion"
+
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
 Public Property Offset As Drawing.Point = New Drawing.Point(-5 ,-5 ) Implements Positionable.Offset
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
@@ -65,4 +81,9 @@ Set(value As Drawing.Point)
 End Set
 End Property
 
+
+#End Region
+
+
 End Class
+

@@ -16,7 +16,7 @@ Public Event PosChanged(sender As Point)
 
   Public Sub New(il As InteractiveLocation)
     mover = il
-    mover.children.Add(Me)
+    mover.AddClient(Me)
   End Sub
 
 
@@ -88,6 +88,10 @@ Public Event PosChanged(sender As Point)
 
 #End Region '"Wrapper Methods"
 
+#Region "Positionable Implementaion"
+
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
 Public Property Offset As New Drawing.Point Implements Positionable.Offset
 
 Public Property Pos As Drawing.Point Implements Positionable.Pos
@@ -100,5 +104,7 @@ Set(value As Drawing.Point)
   'mover.Pos = pt 
 End Set
 End Property
+
+#End Region '#Region "Positionable Implementaion"
 End Class
 

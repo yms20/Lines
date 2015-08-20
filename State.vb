@@ -30,6 +30,9 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 #End Region ' "Controllable Implementations"
 
 #Region "Positionable Implementations"
+
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
   private m_pos As New Drawing.Point(10, 10)
 
 <datamemberAttribute> _
@@ -86,7 +89,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   End Sub
 
   Private Sub runnerArrived(r As Runner)
-
+    'get the first Positionable of the lines last point (that's the target state)
     Dim mvbl As Positionable = r.line.Points(r.line.Points.Count - 1).mover.children(0)
     Dim s As State = mvbl
     s.applyWork(r.Tag)
@@ -107,8 +110,8 @@ End Sub
     AddHandler r.Disposed, AddressOf removeRule
 
     r.initLine()
-    locator.children.Add(r.rulator)
-    locator.children.Add(r.remover) 
+    locator.AddClient(r.rulator)
+    locator.AddClient(r.remover) 
     rules.Add(r)
   End Sub
 
@@ -131,8 +134,8 @@ End Sub
     locator.Offset = New Drawing.Point(-locator.Width / 2, _
                                          -locator.Height / 2) 'center of state circle - center of locator
 
-    locator.children.Add(connector)
-    locator.children.Add(remover ) 
+    locator.AddClient(connector)
+    locator.AddClient(remover ) 
 
   RaiseEvent ControlAdded(locator)
   RaiseEvent ControlAdded(connector)

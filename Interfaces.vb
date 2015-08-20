@@ -10,8 +10,11 @@ End Interface
 'State and Point are Positionable
 Public Interface Positionable
 
-Property Pos As Drawing.Point 
-Property Offset As Drawing.Point 
+  'raise to to detach from Interactive Location
+  Event detatch (client As Positionable )  
+
+  Property Pos As Drawing.Point 
+  Property Offset As Drawing.Point 
 
 End Interface
 
@@ -22,7 +25,7 @@ End Interface
 
 'for elements that want to use interactive connect 
 Public Interface Connectable 
-  'connect to given target
+  'drag target calls connect to (me) on sender
   Sub Connect (target As Connectable)
 End Interface
 

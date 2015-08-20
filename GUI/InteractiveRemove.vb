@@ -12,6 +12,10 @@ Private Sub InteractiveStateRemove_MouseDoubleClick( sender As Object,  e As Mou
  child.Dispose
 End Sub
 
+#Region "Positionable Implementaion"
+
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
 
 Public Property Offset As Drawing.Point  = New Drawing.Point (15, -15 )  Implements Positionable.Offset 
 
@@ -23,4 +27,7 @@ Set(value As Drawing.Point)
  Location = value + Offset 
 End Set
 End Property
+
+#End Region '#Region "Positionable Implementaion"
+
 End Class

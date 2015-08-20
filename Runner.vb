@@ -7,15 +7,6 @@
 
   Public Property Tag As Object 
 
-  Public Property Offset As Drawing.Point Implements Positionable.Offset
-  Public Property Pos As Drawing.Point Implements Animateable.Pos 
-  Get
-    Return line.getPoint (t)
-  End Get
-  Set(value  As Drawing.Point )
-    
-  End Set
-  End Property
 
   Public sw As new Stopwatch
   Dim t As Double =  0
@@ -39,5 +30,22 @@
     Dim p As Drawing.Point = line.getPoint (t) 
     g.FillEllipse  (Brushes.BlanchedAlmond ,New Rectangle(p.X -16 , p.Y - 16 ,32,32 )) 
   End Sub
+
+#Region "Positionable Implementaion"
+
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
+  Public Property Offset As Drawing.Point Implements Positionable.Offset
+  Public Property Pos As Drawing.Point Implements Animateable.Pos 
+  Get
+    Return line.getPoint (t)
+  End Get
+  Set(value  As Drawing.Point )
+    
+  End Set
+  End Property
+
+#End Region '#Region "Positionable Implementaion"
+
 
 End Class

@@ -7,7 +7,9 @@ Implements Positionable
   Dim lastMousePos As Drawing.Point = Drawing.Point.Empty 
   Dim dragging As Boolean = False
 
-  Public Sub new (state As State)
+
+
+  Public Sub new (state As Connectable)
     InitializeComponent 
     Me.child = state 
   End Sub
@@ -16,17 +18,8 @@ Implements Positionable
   Private Sub InterActiveConnect_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
     'get the sender (dragging from)
     Dim s As InteractiveConnect = e.Data.GetData("InteractiveConnect") 
-
     s.child.connect (me.child)
 
-
-    'Dim line As New Line 
-    'line.Points.Add (New Point (s.state.Pos,s.state.locator ))    
-    'line.Points.Add (New Point (state.Pos,state.locator ))
-    
-    's.state.outs.Add(line ) 
-
-    'MsgBox (s.Location.ToString   ) 
   End Sub  
 
   Private Sub InterActiveConnect_MouseDown( sender As Object,  e As MouseEventArgs) Handles MyBase.MouseDown
@@ -53,6 +46,11 @@ Implements Positionable
 
 #Region "Positionable Implementaion"
 
+Event detatch (client As Positionable )  Implements Positionable.detatch 
+
+Public Sub detachFromInteractiveLocation
+  RaiseEvent detatch (Me) 
+End Sub
 
 Public Property Offset As Drawing.Point  = New Drawing.Point (5, 15 )  Implements Positionable.Offset 
 
