@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class MainWindow
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
@@ -22,27 +22,27 @@ Partial Class Form1
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
     Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
-    Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+    Me.Canvas1 = New Canvas()
     Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
     Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
-    Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButton3Play = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+    Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
     Me.ToolStripButton4Select = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton2StartState = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton2State = New System.Windows.Forms.ToolStripButton()
     Me.ToolStripButton1Line = New System.Windows.Forms.ToolStripButton()
-    Me.Canvas1 = New Canvas()
     Me.Starter1 = New Starter()
     Me.ToolStripContainer1.ContentPanel.SuspendLayout
     Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout
     Me.ToolStripContainer1.SuspendLayout
-    Me.ToolStrip2.SuspendLayout
     Me.ToolStrip1.SuspendLayout
     Me.ToolStrip3.SuspendLayout
+    Me.ToolStrip2.SuspendLayout
     Me.SuspendLayout
     '
     'ToolStripContainer1
@@ -66,14 +66,16 @@ Partial Class Form1
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip3)
     Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip2)
     '
-    'ToolStrip2
+    'Canvas1
     '
-    Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
-    Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4Select, Me.ToolStripButton2StartState, Me.ToolStripButton2State, Me.ToolStripButton1Line})
-    Me.ToolStrip2.Location = New System.Drawing.Point(71, 25)
-    Me.ToolStrip2.Name = "ToolStrip2"
-    Me.ToolStrip2.Size = New System.Drawing.Size(133, 25)
-    Me.ToolStrip2.TabIndex = 1
+    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
+    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
+    Me.Canvas1.Mode = Canvas.Modes.AddLine
+    Me.Canvas1.Name = "Canvas1"
+    Me.Canvas1.Size = New System.Drawing.Size(856, 454)
+    Me.Canvas1.TabIndex = 0
     '
     'ToolStrip1
     '
@@ -95,15 +97,6 @@ Partial Class Form1
     Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
     Me.ToolStripComboBox1.ToolTipText = "Input for StateMachin. Is read char by char left to right by statemachine"
     '
-    'ToolStrip3
-    '
-    Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
-    Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
-    Me.ToolStrip3.Location = New System.Drawing.Point(7, 25)
-    Me.ToolStrip3.Name = "ToolStrip3"
-    Me.ToolStrip3.Size = New System.Drawing.Size(33, 25)
-    Me.ToolStrip3.TabIndex = 2
-    '
     'ToolStripButton3Play
     '
     Me.ToolStripButton3Play.CheckOnClick = true
@@ -114,6 +107,15 @@ Partial Class Form1
     Me.ToolStripButton3Play.Size = New System.Drawing.Size(23, 22)
     Me.ToolStripButton3Play.Text = "ToolStripButton3"
     '
+    'ToolStrip3
+    '
+    Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
+    Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
+    Me.ToolStrip3.Location = New System.Drawing.Point(7, 25)
+    Me.ToolStrip3.Name = "ToolStrip3"
+    Me.ToolStrip3.Size = New System.Drawing.Size(33, 25)
+    Me.ToolStrip3.TabIndex = 2
+    '
     'ToolStripButton1
     '
     Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -122,6 +124,15 @@ Partial Class Form1
     Me.ToolStripButton1.Name = "ToolStripButton1"
     Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
     Me.ToolStripButton1.Text = "ToolStripButton1Save"
+    '
+    'ToolStrip2
+    '
+    Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
+    Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton4Select, Me.ToolStripButton2StartState, Me.ToolStripButton2State, Me.ToolStripButton1Line})
+    Me.ToolStrip2.Location = New System.Drawing.Point(48, 25)
+    Me.ToolStrip2.Name = "ToolStrip2"
+    Me.ToolStrip2.Size = New System.Drawing.Size(102, 25)
+    Me.ToolStrip2.TabIndex = 1
     '
     'ToolStripButton4Select
     '
@@ -165,17 +176,6 @@ Partial Class Form1
     Me.ToolStripButton1Line.Size = New System.Drawing.Size(23, 22)
     Me.ToolStripButton1Line.Text = "ToolStripButton1"
     '
-    'Canvas1
-    '
-    Me.Canvas1.BackColor = System.Drawing.SystemColors.ActiveBorder
-    Me.Canvas1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.Canvas1.Location = New System.Drawing.Point(0, 0)
-    Me.Canvas1.Mode = Canvas.Modes.AddLine
-    Me.Canvas1.Name = "Canvas1"
-    Me.Canvas1.Size = New System.Drawing.Size(856, 454)
-    Me.Canvas1.TabIndex = 0
-    '
     'Starter1
     '
     Me.Starter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -194,18 +194,18 @@ Partial Class Form1
     Me.Controls.Add(Me.ToolStripContainer1)
     Me.Controls.Add(Me.Starter1)
     Me.Name = "Form1"
-    Me.Text = "Form1"
+    Me.Text = "None Deterministice Statemachine Builder"
     Me.ToolStripContainer1.ContentPanel.ResumeLayout(false)
     Me.ToolStripContainer1.TopToolStripPanel.ResumeLayout(false)
     Me.ToolStripContainer1.TopToolStripPanel.PerformLayout
     Me.ToolStripContainer1.ResumeLayout(false)
     Me.ToolStripContainer1.PerformLayout
-    Me.ToolStrip2.ResumeLayout(false)
-    Me.ToolStrip2.PerformLayout
     Me.ToolStrip1.ResumeLayout(false)
     Me.ToolStrip1.PerformLayout
     Me.ToolStrip3.ResumeLayout(false)
     Me.ToolStrip3.PerformLayout
+    Me.ToolStrip2.ResumeLayout(false)
+    Me.ToolStrip2.PerformLayout
     Me.ResumeLayout(false)
 
 End Sub

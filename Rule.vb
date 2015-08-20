@@ -31,7 +31,12 @@ Public Sub initLine()
   Line.Points.Add(New Point(source.Pos, source.locator))
   Dim middlePoint As Point = New Point(source.Pos.X / 2 + target.Pos.X / 2, source.Pos.Y / 2 + target.Pos.Y / 2)
   Line.Points.Add(middlePoint)
+  'handle update of rule interactions locations
+  'when first point is moved
   AddHandler middlePoint.PosChanged, AddressOf handlePointChanged
+  'when source state is moved
+  AddHandler Line.Points(0).PosChanged , AddressOf handlePointChanged 
+
   RaiseEvent ControlAdded(middlePoint.mover)
   Line.Points.Add(New Point(target.Pos, target.locator))
 
@@ -42,13 +47,11 @@ Public Sub initLine()
 
   remover = New InteractiveRemove (Me)
   remover.Pos = Line.getPoint(0.2)
-  'remover.Height = 10 
-  'remover.Width = 10
-  'remover.BackColor = Color.Red 
   RaiseEvent ControlAdded (remover) 
   
 End Sub
 
+'handle update of rule interactions locations
 Private Sub handlePointChanged(p As Point)
 
   rulator.Offset = Line.getPoint(0.15) - Line.Points(0).pt
@@ -60,8 +63,6 @@ Private Sub handlePointChanged(p As Point)
 End Sub
 
 Public Sub draw(g As Graphics) Implements Drawable.draw
-  rulator.Offset = Line.getPoint(0.15) - Line.Points(0).pt
-  remover.Offset = Line.getPoint(0.2) - Line.Points(0).pt
   If Not IsNothing(Line) Then Line.draw(g)
 End Sub
 

@@ -124,14 +124,6 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     locator.Offset = New Drawing.Point(-locator.Width / 2, _
                                          -locator.Height / 2) 'center of state circle - center of locator
 
-    'connector.BackColor = Color.Aqua
-    'connector.Width = 10
-    'connector.Height = 10
-
-    'remover.Width = 10
-    'remover.Height = 10 
-    'remover.BackColor = Color.Red 
-
     locator.children.Add(connector)
     locator.children.Add(remover ) 
 
@@ -144,15 +136,8 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 End Sub
 
   Public Sub New()
-
-
-  Me.Name = "State " & ctr
-  'First Node is StartNode
-  'If ctr = 0 Then
-  '  NodeType = NodeTypes.Start
-  'End If
-
-  ctr += 1
+    Me.Name = "State " & ctr
+    ctr += 1
   End Sub
 
   Public Sub draw(g As Graphics) Implements Drawable.draw

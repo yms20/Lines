@@ -70,7 +70,7 @@ Sub addControl (c As Control )
 End Sub
 
 
-Public Function  startStateMachine (instruction As queue(Of String ) ) As State 
+Public Sub startStateMachine (instruction As queue(Of String ) )
   
   For Each d As Drawable In Drawables
     If d.GetType is GetType (State)
@@ -84,7 +84,7 @@ Public Function  startStateMachine (instruction As queue(Of String ) ) As State
     End If
   Next
   
-End Function 
+End Sub 
 
 Protected Overrides Sub OnPaint(e As PaintEventArgs)
 MyBase.OnPaint(e)

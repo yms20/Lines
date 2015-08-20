@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Runtime.Serialization
 Imports System.Text
 
-Public Class Form1
+Public Class MainWindow
 
 Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 ToolStripComboBox1.Text = "11001010"
@@ -12,7 +12,7 @@ End Sub
 
 
 
-  Public Function startStateMachine() As State
+  Public Sub startStateMachine()  
     Dim instruction As New Queue(Of String)
 
     Dim inputString As String = ToolStripComboBox1.Text
@@ -23,8 +23,9 @@ End Sub
       instruction.Enqueue(inputString.Chars(i))
     Next
 
-    Return  Canvas1.startStateMachine(instruction)
-  End Function
+    Canvas1.startStateMachine(instruction)
+
+  End Sub
 
 'Toolstrip2 - Canvas Mode Select 
 
@@ -86,7 +87,9 @@ End Sub
 Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
 
   'Dim s As New  Rule  (New State , New State)
-  Dim s As   State = startStateMachine
+  Dim s As new  State 
+
+  startStateMachine
  
   If IsNothing (s) then Return 'zz gitb start statemachine nichts zurück weil es mehrere start states geben kann
 
