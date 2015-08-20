@@ -2,20 +2,22 @@
 Implements Positionable
 
 
-  Dim state As State
+  Dim child As Connectable
 
   Dim lastMousePos As Drawing.Point = Drawing.Point.Empty 
   Dim dragging As Boolean = False
 
   Public Sub new (state As State)
     InitializeComponent 
-    Me.state = state 
+    Me.child = state 
   End Sub
 
+  'is triggered by the target 
   Private Sub InterActiveConnect_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+    'get the sender (dragging from)
     Dim s As InteractiveConnect = e.Data.GetData("InteractiveConnect") 
 
-    s.state.addRule (state)
+    s.child.connect (me.child)
 
 
     'Dim line As New Line 

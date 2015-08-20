@@ -4,7 +4,7 @@ Imports System.Runtime.Serialization
 
 <DataContractAttribute> _ 
 Public Class State
-Implements Drawable, Positionable, Controllable
+Implements Drawable, Positionable, Controllable, Connectable 
 
   Event Disposed (sender As Controllable  ) Implements Controllable.Disposed 
 
@@ -93,6 +93,13 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     RemoveHandler r.Finished, AddressOf runnerArrived
     runnersToDelete.Add(r)
   End Sub
+
+Public Sub Connect(partner As Connectable ) Implements Connectable.Connect
+ If partner.GetType is GetType (State) 
+    Dim state As State = partner 
+    addRule(state) 
+ End If
+End Sub
 
   Sub addRule(target As State)
     Dim r As New Rule(Me, target)
@@ -215,5 +222,6 @@ GC.SuppressFinalize(Me)
 RaiseEvent Disposed (Me) 
 End Sub
 #End Region
+
 
 End Class

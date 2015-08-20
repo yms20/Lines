@@ -119,11 +119,11 @@
     <Compile Include="GUI\Canvas.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Form1.vb">
+    <Compile Include="GUI\MainWindow.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="GUI\MainWindow.Designer.vb">
+      <DependentUpon>MainWindow.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -157,8 +157,8 @@
     <EmbeddedResource Include="GUI\Canvas.resx">
       <DependentUpon>Canvas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="GUI\MainWindow.resx">
+      <DependentUpon>MainWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\InteractiveConnect.resx">
       <DependentUpon>InteractiveConnect.vb</DependentUpon>

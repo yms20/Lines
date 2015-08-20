@@ -102,6 +102,9 @@ Implements Drawable, Positionable
     Points.ForEach(Function(x As Point) x.mover.Visible = True)
   End Sub
 
+  Public sub combine (line As Line ) 
+    line.Points.ForEach (Sub (p As Point ) Me.Points.Add (p) )
+  End Sub
 
 End Class 'Line
 
