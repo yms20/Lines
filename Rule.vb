@@ -24,7 +24,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 
 
   Public Property rulator As InteractiveRuleEdit
-  Public Property deletor As InteractiveRemove 
+  Public Property remover As InteractiveRemove 
 
 Public Sub New(source As State, target As State)
   Me.source = source
@@ -46,12 +46,12 @@ Public Sub initLine()
   rulator.Visible = True
   RaiseEvent ControlAdded(rulator)
 
-  deletor = New InteractiveRemove (Me)
-  deletor.Pos = Line.getPoint(0.2)
-  deletor.Height = 10 
-  deletor.Width = 10
-  deletor.BackColor = Color.Red 
-  RaiseEvent ControlAdded (deletor) 
+  remover = New InteractiveRemove (Me)
+  remover.Pos = Line.getPoint(0.2)
+  remover.Height = 10 
+  remover.Width = 10
+  remover.BackColor = Color.Red 
+  RaiseEvent ControlAdded (remover) 
   
 End Sub
 
@@ -60,14 +60,14 @@ Private Sub handlePointChanged(p As Point)
   rulator.Offset = Line.getPoint(0.15) - Line.Points(0).pt
   rulator.Pos = source.Pos
 
-  deletor.Offset = Line.getPoint(0.2) - Line.Points(0).pt
-  deletor.Pos = source.Pos
+  remover.Offset = Line.getPoint(0.2) - Line.Points(0).pt
+  remover.Pos = source.Pos
 
 End Sub
 
 Public Sub draw(g As Graphics) Implements Drawable.draw
   rulator.Offset = Line.getPoint(0.15) - Line.Points(0).pt
-  deletor.Offset = Line.getPoint(0.2) - Line.Points(0).pt
+  remover.Offset = Line.getPoint(0.2) - Line.Points(0).pt
   If Not IsNothing(Line) Then Line.draw(g)
 End Sub
 
@@ -82,7 +82,7 @@ If Not Me.disposedValue Then
 If disposing Then
 ' TODO: Verwalteten Zustand löschen (verwaltete Objekte).
   rulator.Dispose
-  deletor.Dispose 
+  remover.Dispose 
   Dim middlePoint As Point = Line.Points(1)
   middlePoint.mover.Dispose 
   Me.source.rules.Remove (Me) 

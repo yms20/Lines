@@ -67,7 +67,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Public connector As InteractiveConnect
 
   <XmlIgnore()> _
-  Public deletor As InteractiveRemove
+  Public remover As InteractiveRemove
 
 <DataMemberAttribute> _
   Public Property rules As New List(Of Rule)
@@ -111,7 +111,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     AddHandler r.ControlAdded, AddressOf forwardEventRuleControlAdded
     r.initLine()
     locator.children.Add(r.rulator)
-    locator.children.Add(r.deletor) 
+    locator.children.Add(r.remover) 
     rules.Add(r)
   End Sub
 
@@ -122,7 +122,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 
    locator = New InteractiveLocation(Me)
    connector = New InteractiveConnect(Me)
-    deletor = New InteractiveRemove (Me) 
+    remover = New InteractiveRemove (Me) 
 
     locator.BackColor = Color.AliceBlue
     locator.Width = 20
@@ -134,16 +134,16 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     connector.Width = 10
     connector.Height = 10
 
-    deletor.Width = 10
-    deletor.Height = 10 
-    deletor.BackColor = Color.Red 
+    remover.Width = 10
+    remover.Height = 10 
+    remover.BackColor = Color.Red 
 
     locator.children.Add(connector)
-    locator.children.Add(deletor ) 
+    locator.children.Add(remover ) 
 
   RaiseEvent ControlAdded(locator)
   RaiseEvent ControlAdded(connector)
-  RaiseEvent ControlAdded(deletor)
+  RaiseEvent ControlAdded(remover)
 
 
 
@@ -212,7 +212,7 @@ If disposing Then
 
   connector.Dispose 
   locator.Dispose 
-  deletor.Dispose 
+  remover.Dispose 
 
 End If
 ' TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalize() unten überschreiben.
