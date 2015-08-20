@@ -4,9 +4,9 @@ Imports System.Runtime.Serialization
 
 <DataContractAttribute> _ 
 Public Class State
-Implements Drawable, Positionable, Controllable, IDisposable
+Implements Drawable, Positionable, Controllable
 
-  Event disposed (sender As State )
+  Event Disposed (sender As Controllable  ) Implements Controllable.Disposed 
 
 'State machine Node Types
   Enum NodeTypes
@@ -22,18 +22,6 @@ Implements Drawable, Positionable, Controllable, IDisposable
 #Region "Controllable Implementations"
 
 Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
-
-
-  'returns all controls
-  Public Function getControls() As List(Of Control) Implements Controllable.getControls
-    getControls = New List(Of Control)
-    getControls.AddRange(rules.SelectMany(Of Control)(Function(r As Rule) r.getControls))
-    getControls.Add(connector)
-    getControls.Add(locator)
-
-    getControls = getControls.Distinct.ToList
-
-  End Function
 
   Sub forwardEventRuleControlAdded(c As Control)
     RaiseEvent ControlAdded(c)
@@ -109,10 +97,16 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Sub addRule(target As State)
     Dim r As New Rule(Me, target)
     AddHandler r.ControlAdded, AddressOf forwardEventRuleControlAdded
+    AddHandler r.Disposed, AddressOf removeRule
+
     r.initLine()
     locator.children.Add(r.rulator)
     locator.children.Add(r.remover) 
     rules.Add(r)
+  End Sub
+
+  Sub removeRule (rule As Controllable) 
+    rules.Remove (rule) 
   End Sub
 
 #End Region '"Rule Implementation"
@@ -130,13 +124,13 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
     locator.Offset = New Drawing.Point(-locator.Width / 2, _
                                          -locator.Height / 2) 'center of state circle - center of locator
 
-    connector.BackColor = Color.Aqua
-    connector.Width = 10
-    connector.Height = 10
+    'connector.BackColor = Color.Aqua
+    'connector.Width = 10
+    'connector.Height = 10
 
-    remover.Width = 10
-    remover.Height = 10 
-    remover.BackColor = Color.Red 
+    'remover.Width = 10
+    'remover.Height = 10 
+    'remover.BackColor = Color.Red 
 
     locator.children.Add(connector)
     locator.children.Add(remover ) 
@@ -233,7 +227,7 @@ Public Sub Dispose() Implements IDisposable.Dispose
 ' Ändern Sie diesen Code nicht. Fügen Sie oben in Dispose(disposing As Boolean) Bereinigungscode ein.
 Dispose(True)
 GC.SuppressFinalize(Me)
-RaiseEvent disposed (Me) 
+RaiseEvent Disposed (Me) 
 End Sub
 #End Region
 

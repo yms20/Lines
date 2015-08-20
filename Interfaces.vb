@@ -23,8 +23,9 @@ End Interface
 
 
 Public Interface Controllable
+Inherits IDisposable 
   
   Event ControlAdded (c As Control )
-  Function getControls As List(Of Control)
+  Event Disposed (c As Controllable)
 
 End Interface

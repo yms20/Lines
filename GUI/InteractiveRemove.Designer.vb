@@ -24,13 +24,16 @@ Partial Class InteractiveRemove
     Private Sub InitializeComponent()
     Me.SuspendLayout
     '
-    'InteractiveStateRemove
+    'InteractiveRemove
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.Red
-    Me.Name = "InteractiveStateRemove"
-    Me.Size = New System.Drawing.Size(15, 15)
+    Me.Cursor = System.Windows.Forms.Cursors.No
+    Me.MaximumSize = New System.Drawing.Size(15, 15)
+    Me.MinimumSize = New System.Drawing.Size(5, 5)
+    Me.Name = "InteractiveRemove"
+    Me.Size = New System.Drawing.Size(10, 10)
     Me.ResumeLayout(false)
 
 End Sub

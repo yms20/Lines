@@ -2,16 +2,10 @@
  
 <DataContractAttribute (IsReference := True ) > _
 Public Class Rule
-Implements Drawable, Controllable,IDisposable
+Implements Drawable, Controllable
 
-
+Public Event Disposed (sender As Controllable ) Implements Controllable.Disposed 
 Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
-
-  'returns all controls
-  Public Function getControls() As List(Of Control) Implements Controllable.getControls
-    Return Line.Points.Select(Of Control)(Function(p As Point) p.mover).ToList
-  End Function
-
 
   <DataMember> _ 
   Public Property source As State
@@ -48,9 +42,9 @@ Public Sub initLine()
 
   remover = New InteractiveRemove (Me)
   remover.Pos = Line.getPoint(0.2)
-  remover.Height = 10 
-  remover.Width = 10
-  remover.BackColor = Color.Red 
+  'remover.Height = 10 
+  'remover.Width = 10
+  'remover.BackColor = Color.Red 
   RaiseEvent ControlAdded (remover) 
   
 End Sub
@@ -85,7 +79,10 @@ If disposing Then
   remover.Dispose 
   Dim middlePoint As Point = Line.Points(1)
   middlePoint.mover.Dispose 
-  Me.source.rules.Remove (Me) 
+
+  RaiseEvent Disposed (Me) 
+
+ ' Me.source.rules.Remove (Me) 
 End If
   
 ' TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalize() unten überschreiben.

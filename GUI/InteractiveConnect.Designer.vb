@@ -24,13 +24,16 @@ Partial Class InteractiveConnect
     Private Sub InitializeComponent()
     Me.SuspendLayout
     '
-    'InterActiveConnect
+    'InteractiveConnect
     '
     Me.AllowDrop = true
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+    Me.BackColor = System.Drawing.SystemColors.HotTrack
     Me.Cursor = System.Windows.Forms.Cursors.Cross
-    Me.Name = "InterActiveConnect"
+    Me.MaximumSize = New System.Drawing.Size(15, 15)
+    Me.MinimumSize = New System.Drawing.Size(5, 5)
+    Me.Name = "InteractiveConnect"
     Me.Size = New System.Drawing.Size(10, 10)
     Me.ResumeLayout(false)
 

@@ -57,7 +57,7 @@ Private Sub Canvas_MouseClick( sender As Object,  e As MouseEventArgs) Handles M
       If Mode = Modes.AddStartState then s.NodeType =State.NodeTypes.Start 
 
       AddHandler s.ControlAdded , AddressOf addControl 
-      AddHandler s.disposed  , AddressOf removeState
+      AddHandler s.Disposed  , AddressOf removeState
 
       s.initController 
       s.locator.Pos  = e.Location 
