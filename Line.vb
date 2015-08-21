@@ -1,14 +1,17 @@
 ﻿Imports System.Runtime.Serialization
-
-<DataContractAttribute(IsReference:=False)> _
+'<DataContractAttribute(IsReference:=False, Name := "Line" , Namespace := "nsp" )> _
+'<DataContractAttribute (IsReference := False ,  Namespace := "" ) > _ 
+<DataContractAttribute (IsReference := False ,  Namespace := "gag" ) > _ 
+<KnownType(gettype(Line))> _ 
 Public Class Line
 Implements Drawable, Positionable, Controllable, Connectable
 
 
   Shared ctr As Integer = 0
-<DataMemberAttribute> _
+'<DataMemberAttribute> _
+  <DataMemberAttribute (name := "Name")> _ 
   Public Property Name As String = "Line "
-<DataMemberAttribute> _
+<DataMemberAttribute (Name := "Punkte"   )> _
   Public WithEvents Points As New ObjectModel.ObservableCollection(of Point) 
 ' Generic.List(Of Point)
 

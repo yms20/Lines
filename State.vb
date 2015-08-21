@@ -31,7 +31,7 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
 
 #Region "Positionable Implementations"
 
-Event detatch (client As Positionable )  Implements Positionable.detatch 
+  Event detatch (client As Positionable )  Implements Positionable.detatch 
 
   private m_pos As New Drawing.Point(10, 10)
 
@@ -61,10 +61,10 @@ Event detatch (client As Positionable )  Implements Positionable.detatch
   Public remover As InteractiveRemove
 
 <DataMemberAttribute> _
-  Public Property rules As New List(Of Rule)
+  Public Property rules As new List(Of Rule)
 
-  Private runners As New List(Of Runner)
-  Private runnersToDelete As New List(Of Runner)
+  Private runners As List(Of Runner)
+  Private runnersToDelete As List(Of Runner)
 
 
 #Region "Rule Implementation"
@@ -121,7 +121,25 @@ End Sub
 
 #End Region '"Rule Implementation"
 
+#Region "Serialization Deserialization"
+
+<OnDeserialized > _ 
+sub OnDeserialized(c As StreamingContext )
+  init
+  initController 
+End Sub
+
+
+#End Region
+
+
+  Sub init()
+    runners  = New List(Of Runner)
+    runnersToDelete = New List(Of Runner ) 
+  End Sub
+
 'call this after connection Handler to ControlerAdded Event to get Controllers
+
   Sub initController()
 
    locator = New InteractiveLocation(Me)
@@ -148,6 +166,8 @@ End Sub
   Public Sub New()
     Me.Name = "State " & ctr
     ctr += 1
+    init 
+
   End Sub
 
   Public Sub draw(g As Graphics) Implements Drawable.draw

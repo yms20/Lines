@@ -1,17 +1,12 @@
 ﻿Imports System.Runtime.Serialization
 
 'Wrapper Klasse für Point
-<DataContractAttribute> _
+<DataContractAttribute ( Namespace := "" ) > _
 Public Class Point
 Implements Positionable
 
 Public mover As InteractiveLocation
 Public Event PosChanged(sender As Point)
-
-
-#Region "Wrapper Methods"
-<DataMemberattribute> _ 
-  Public pt As Drawing.Point 'it's a structure!
 
 
   Public Sub New(il As InteractiveLocation)
@@ -24,8 +19,12 @@ Public Event PosChanged(sender As Point)
     Me.New(New InteractiveLocation())
   End Sub
 
+#Region "Wrapper Methods"
+'<DataMemberattribute (Name := "punkt" ) > _ 
+  Public pt As Drawing.Point 'it's a structure!
+
   Public Sub New(x As Integer, y As Integer)
-    Me.New()
+    Me.New() 'creats new Interactive Location
     pt.X = x
     pt.Y = y
     mover.Pos = pt
@@ -46,7 +45,7 @@ Public Event PosChanged(sender As Point)
     Me.New(point.X, point.Y, il)
   End Sub
 
-
+  <DataMemberattribute> _
   Public Property X As Integer
   Get
     Return pt.X
@@ -55,6 +54,7 @@ Public Event PosChanged(sender As Point)
     pt.X = value
   End Set
   End Property
+  <DataMemberattribute> _
   Public Property Y As Integer
   Get
     Return pt.Y

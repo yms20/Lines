@@ -2,6 +2,8 @@
 Imports System.IO
 Imports System.Runtime.Serialization
 Imports System.Text
+Imports System.Xml
+
 
 Public Class MainWindow
 
@@ -12,7 +14,7 @@ End Sub
 
 
 
-  Public Sub startStateMachine()  
+  Public Sub startStateMachine()
     Dim instruction As New Queue(Of String)
 
     Dim inputString As String = ToolStripComboBox1.Text
@@ -29,8 +31,8 @@ End Sub
 
 'Toolstrip2 - Canvas Mode Select 
 
-Private Sub ToolStripButton2StartState_Click( sender As Object,  e As EventArgs) Handles ToolStripButton2StartState.Click
-  Canvas1.Mode = Canvas.Modes.AddStartState 
+Private Sub ToolStripButton2StartState_Click(sender As Object, e As EventArgs) Handles ToolStripButton2StartState.Click
+  Canvas1.Mode = Canvas.Modes.AddStartState
 End Sub
 
 Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2State.Click
@@ -84,22 +86,66 @@ Private Sub Canvas1_MouseDown(sender As Object, e As MouseEventArgs) Handles Can
   End Select
 End Sub
 
-Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+Private Sub ToolStripButton1Save_Click(sender As Object, e As EventArgs) Handles ToolStripButton1Save.Click
 
-  'Dim s As New  Rule  (New State , New State)
-  Dim s As new  State 
+saveToClipboardAndDefaultFile (Of Items ) (Canvas1.Drawables ) 
+End Sub
 
-  startStateMachine
- 
-  If IsNothing (s) then Return 'zz gitb start statemachine nichts zurück weil es mehrere start states geben kann
+Private Sub ToolStripButton1Load_Click( sender As Object,  e As EventArgs) Handles ToolStripButton1Load.Click
+  readFromDefaultFile (Of Items)
+End Sub
 
-  Dim serializer As New DataContractSerializer(s.GetType )
-  Dim writer As New MemoryStream
 
+Sub readFromDefaultFile (Of T) ()
+  Dim serializer As New DataContractSerializer(GetType (T) )
+  Dim  fs As new FileStream("machine.xml", FileMode.Open)
+
+  Try
+
+    Dim xmlDictReader  = XmlDictionaryReader.CreateTextReader (fs,New XmlDictionaryReaderQuotas ())
+
+    Dim obj as T = CType ( serializer.ReadObject ( xmlDictReader ) , T) 
+
+    Canvas1.Drawables.AddRange (obj) 
+  Catch ex As Exception
+    Clipboard.SetText(ex.ToString)
+    MsgBox(ex.ToString)  
+  Finally 
+    fs.Close ()  
+  End Try
+
+End Sub
+Sub saveToClipboardAndDefaultFile (Of T) (data As T)
+
+
+  Dim serializer As New DataContractSerializer(data.GetType )
+  'streamtarget for xmlWriter (with nice line indent setting)
+  Dim writerMemory As New MemoryStream
+
+  'set up to nicen text output
+  Dim setting As New XmlWriterSettings() With {.Indent  = True}
+  'streamtarget for datacontract serializer
+  Dim writerNice As XmlWriter = XmlWriter.Create (writerMemory,setting ) 
+
+
+  Try
+    serializer.WriteObject(writerNice, data)
+    'Clipboard.SetText(Encoding.UTF8.GetString(writerMemory.ToArray()))
+    writerNice.Flush 
+
+    Clipboard.SetText(Encoding.UTF8.GetString(writerMemory.ToArray()))
     
+    'to file 
+    Dim objWriter As New System.IO.StreamWriter("machine.xml")
+    'objWriter.Write(Encoding.UTF8.GetString(writerMemory.ToArray()))
+    objWriter.Write (Encoding.UTF8.GetString(writerMemory.ToArray()))
+    objWriter.Flush ()
+    objWriter.Close()
+  Catch ex As Exception
+    Clipboard.SetText(ex.ToString)
+    MsgBox(ex.ToString)
+  End Try
 
-  serializer.WriteObject(writer, s)
-  Clipboard.SetText (Encoding.UTF8.GetString(writer.ToArray()))
 
 End Sub
 
@@ -110,6 +156,7 @@ End Sub
 Private Sub Canvas1_Click(sender As Object, e As EventArgs)
 
 End Sub
+
 
 
 End Class
