@@ -98,10 +98,10 @@ End Sub
 
 Sub readFromDefaultFile (Of T) ()
   Dim serializer As New DataContractSerializer(GetType (T) )
-  Dim  fs As new FileStream("machine.xml", FileMode.Open)
+  Dim fs as FileStream
 
   Try
-
+    fs =  new FileStream("machine.xml", FileMode.Open)
     Dim xmlDictReader  = XmlDictionaryReader.CreateTextReader (fs,New XmlDictionaryReaderQuotas ())
 
     Dim obj as T = CType ( serializer.ReadObject ( xmlDictReader ) , T) 
@@ -111,7 +111,7 @@ Sub readFromDefaultFile (Of T) ()
     Clipboard.SetText(ex.ToString)
     MsgBox(ex.ToString)  
   Finally 
-    fs.Close ()  
+    If Not IsNothing (fs) then fs.Close ()  
   End Try
 
 End Sub
