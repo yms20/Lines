@@ -15,8 +15,9 @@ Implements Drawable, Positionable, Controllable, Connectable
     Final
   End Enum
 
-
+<DataMemberAttribute> _
   Shared ctr As Integer = 0
+<DataMemberAttribute> _
   Public Property NodeType As NodeTypes = NodeTypes.Node
 
 #Region "Controllable Implementations"
@@ -108,8 +109,8 @@ End Sub
     Dim r As New Rule(Me, target)
     AddHandler r.ControlAdded, AddressOf forwardEventRuleControlAdded
     AddHandler r.Disposed, AddressOf removeRule
-
     r.initLine()
+    
     locator.AddClient(r.rulator)
     locator.AddClient(r.remover) 
     rules.Add(r)

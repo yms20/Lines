@@ -17,8 +17,8 @@ Public Event ControlAdded(c As Control) Implements Controllable.ControlAdded
   Public Property Line As New Line
 
 
-  Public Property rulator As InteractiveRuleEdit
-  Public Property remover As InteractiveRemove 
+  Public Property rulator As  New InteractiveRuleEdit(Me)
+  Public Property remover As  New InteractiveRemove (Me) 
 
 Public Sub New(source As State, target As State)
   Me.source = source
@@ -40,13 +40,13 @@ Public Sub initLine()
   RaiseEvent ControlAdded(middlePoint.mover)
   Line.Points.Add(New Point(target.Pos, target.locator))
 
-  rulator = New InteractiveRuleEdit(Me)
-  rulator.Pos = Line.getPoint(0.15)
-  rulator.Visible = True
+  'rulator 
+  'rulator.Pos = Line.getPoint(0.15)
+  'rulator.Visible = True
   RaiseEvent ControlAdded(rulator)
 
-  remover = New InteractiveRemove (Me)
-  remover.Pos = Line.getPoint(0.2)
+  'remover =
+  'remover.Pos = Line.getPoint(0.2)
   RaiseEvent ControlAdded (remover) 
   
 End Sub
